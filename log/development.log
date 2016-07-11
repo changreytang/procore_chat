@@ -1,0 +1,18 @@
+
+
+Started GET "/hello_world" for ::1 at 2016-07-11 13:20:56 -0700
+Processing by HelloWorldController#index as HTML
+  Rendered hello_world/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 1544ms (Views: 1538.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2016-07-11 13:20:58 -0700
+
+
+Started GET "/assets/app-bundle.self-aa854c205f603a8deb84cccfec285674c2a6010149921a30d5c485af5a48e347.js?body=1" for ::1 at 2016-07-11 13:20:58 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-11 13:20:58 -0700
+
+
+Started GET "/assets/vendor-bundle.self-beef0f33fac80af71ae2117715c62cf41e7634ec77bc8ea618c42cc95a125d33.js?body=1" for ::1 at 2016-07-11 13:20:58 -0700
