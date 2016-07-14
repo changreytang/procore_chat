@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'sessions', to: 'sessions#create'
   delete 'sessions', to: 'sessions#destroy'
   root 'sessions#new'
+  get 'chats', to: 'chats#home', as: :chat
+  get '/token', to: 'chats#token'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
