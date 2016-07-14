@@ -10,9 +10,10 @@ Rails.application.routes.draw do
   get 'sessions/new', to: 'sessions#new'
   post 'sessions', to: 'sessions#create'
   delete 'sessions', to: 'sessions#destroy'
-  root 'sessions#new'
+
   get 'chats', to: 'chats#home', as: :chat
   get '/token', to: 'chats#token'
+  root 'sessions#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
