@@ -5994,3 +5994,482 @@ Started GET "/token" for ::1 at 2016-07-14 12:05:19 -0700
 Processing by ChatsController#token as HTML
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:47:40 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/app-bundle.self-e8dc49ae13d7a49757dd05e00d687b8ce8f5238a5695f0e6dbffa7069e9924d4.js?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 12:47:40 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:47:41 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 12:47:41 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 42ms (Views: 41.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:48:42 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 6ms (Views: 0.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:48:58 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 21ms (Views: 0.2ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:49:04 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:49:07 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:49:15 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2016-07-14 12:49:46 -0700
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users
+Filter chain halted as :not_logged_in_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 12:49:46 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 617ms (Views: 615.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 12:50:31 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (1.9ms)
+Completed 500 Internal Server Error in 201ms (ActiveRecord: 2.8ms)
+
+ActionView::Template::Error (couldn't find file 'vendor-bundle' with type 'application/javascript'
+Checked in these paths: 
+  /Users/james/projects/procore_chat/app/assets/images
+  /Users/james/projects/procore_chat/app/assets/javascripts
+  /Users/james/projects/procore_chat/app/assets/stylesheets
+  /Users/james/projects/procore_chat/app/assets/webpack
+  /Users/james/projects/procore_chat/vendor/assets/javascripts
+  /Users/james/projects/procore_chat/vendor/assets/stylesheets
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/jquery-rails-4.1.1/vendor/assets/javascripts
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/coffee-rails-4.1.1/lib/assets/javascripts
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/turbolinks-source-5.0.0/lib/assets/javascripts
+  /Users/james/projects/procore_chat/app/assets/webpack
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/bootstrap-sass-3.3.6/assets/stylesheets
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/bootstrap-sass-3.3.6/assets/javascripts
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/bootstrap-sass-3.3.6/assets/fonts
+  /Users/james/.rvm/gems/ruby-2.3.1/gems/bootstrap-sass-3.3.6/assets/images):
+    4:     <title>ProcoreChat</title>
+    5:     <script src="https://media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
+    6:     <script src="https://media.twiliocdn.com/sdk/rtc/js/ip-messaging/v0.10/twilio-ip-messaging.min.js"></script>
+    7:     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    8:     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    9:     <%= csrf_meta_tags %>
+   10:   </head>
+  app/assets/javascripts/application.js:7
+  app/views/layouts/application.html.erb:7:in `_app_views_layouts_application_html_erb___2591196695882140464_70178730585640'
+
+
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (6.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (46.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (40.6ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (86.4ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 12:50:35 -0700
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 119ms (Views: 117.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/app-bundle.self-e8dc49ae13d7a49757dd05e00d687b8ce8f5238a5695f0e6dbffa7069e9924d4.js?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 12:50:35 -0700
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:50:40 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 22ms (Views: 21.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:50:40 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 12:50:40 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (12.2ms)
+Completed 200 OK in 33ms (Views: 32.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:50:44 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:50:45 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:52:35 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 325ms (Views: 307.3ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/assets/app-bundle.self-e8dc49ae13d7a49757dd05e00d687b8ce8f5238a5695f0e6dbffa7069e9924d4.js?body=1" for ::1 at 2016-07-14 12:52:35 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:52:36 -0700
+Processing by ChatsController#token as */*
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/chats_controller.rb:10:in `token'
+
+
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.1ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.9ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (1.1ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (51.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.6ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (100.9ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:52:47 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 39ms (Views: 38.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/app-bundle.self-e8dc49ae13d7a49757dd05e00d687b8ce8f5238a5695f0e6dbffa7069e9924d4.js?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 12:52:47 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:52:48 -0700
+Processing by ChatsController#token as */*
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/chats_controller.rb:10:in `token'
+
+
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.5ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.8ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.8ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (37.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (82.1ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:53:24 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:53:25 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:53:44 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 18ms (Views: 16.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/app-bundle.self-e8dc49ae13d7a49757dd05e00d687b8ce8f5238a5695f0e6dbffa7069e9924d4.js?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 12:53:44 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:53:45 -0700
+Processing by ChatsController#token as */*
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/chats_controller.rb:10:in `token'
+
+
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (44.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (37.6ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (82.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:58:50 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 360ms (Views: 342.2ms | ActiveRecord: 2.6ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:58:52 -0700
+Processing by ChatsController#token as */*
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 12:59:25 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 48ms (Views: 42.8ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/app-bundle.self-e8dc49ae13d7a49757dd05e00d687b8ce8f5238a5695f0e6dbffa7069e9924d4.js?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 12:59:26 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 12:59:27 -0700
+Processing by ChatsController#token as */*
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/chats_controller.rb:10:in `token'
+
+
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.1ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.6ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (40.5ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (41.0ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/james/.rvm/gems/ruby-2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (86.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 13:02:38 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 429ms (Views: 423.4ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/app-bundle.self-f39ca0c77efe80ca44b01642b70b0d71589a98b34b3b1264dd86532059100150.js?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 13:02:39 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 13:02:40 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)

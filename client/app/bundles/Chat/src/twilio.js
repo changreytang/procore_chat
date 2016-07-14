@@ -2,19 +2,9 @@ import store from './store'
 import { getChannels, createMessagingClient } from './actions'
 
 const initTwilio = () => {
-  fetch(`/token`)
-    .then(response => {
-      console.log('response', response)
-      return response.json()
-    })
-    //.then(({ identity, token }) => {
-     // username = identity
-     // console.log(idenity, token)
-     .then(data => {
-      console.log('data', data)
-      const { identity, token } = data
-      console.log('identity', identity)
-      console.log('token', token)
+  fetch(`/token`, { credentials: 'same-origin' })
+    .then(response => response.json())
+    .then(({ identity, token }) => {
 
       const accessManager = new Twilio.AccessManager(token)
       const messagingClient = new Twilio.IPMessaging.Client(accessManager)
