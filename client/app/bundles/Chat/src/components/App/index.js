@@ -1,11 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import ChannelList from '../ChannelList'
+import UserList from '../UserList'
 import Channel from '../Channel'
 
 const App = ({ channels }) =>
   <div className="chat">
-    <ChannelList channels={channels} />
+    <UserList/>
     {
       channels
         .filter(({ active }) => !!active)

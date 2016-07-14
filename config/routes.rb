@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   delete 'sessions', to: 'sessions#destroy'
 
   get 'chats', to: 'chats#home', as: :chat
-  get '/token', to: 'chats#token'
+  get 'token', to: 'chats#token'
   root 'sessions#new'
 
   # Example of regular route:

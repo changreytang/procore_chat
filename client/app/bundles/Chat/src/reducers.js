@@ -1,13 +1,17 @@
 const initialState = {
 	channels: [],
+	users: [],
+	currentUser: {},
 }
+
 
 const reducer = (state = initialState, action) => {
 	const {
 		type,
 		messagingClient,
-		channels,
+		currentUser,
 		users,
+		id,
 		uniqueName,
 		message,
 		messages,
@@ -16,16 +20,16 @@ const reducer = (state = initialState, action) => {
 		case 'CREATE_MESSAGING_CLIENT':
 			return {...state, messagingClient
 			}
-		case 'GET_CHANNELS':
-			return {...state, channels
-			}
 		case 'GET_USERS':
 			return {...state, users
+			}
+		case 'GET_CURRENT_USER':
+			return {...state, currentUser
 			}
 		case 'GET_MESSAGES':
 			return {
 					...state,
-				channels: state.channels.map(channel => {
+					users: state.users.map(user => {
 					if (channel.uniqueName === uniqueName) {
 						return {...channel, messages
 						}
@@ -50,7 +54,7 @@ const reducer = (state = initialState, action) => {
 		case 'ACTIVATE_CHANNEL':
 			return {
 					...state,
-				channels: state.channels.map(channel => {
+					channels: state.channels.map(channel => {
 					if (channel.uniqueName === uniqueName) {
 						return {...channel, active: true
 						}
