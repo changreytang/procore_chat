@@ -9,11 +9,9 @@ const Channel = ({ friendlyName, uniqueName, messages, sendMessage }) =>
       <input type="checkbox" className="checkbox" />
       <div>
         <ul>
-          {
-            messages.map(({ index, body, author }) =>
-              <li key={index}><b>{author}</b>: {body}</li>
-            )
-          }
+          {messages.map(({ index, body, author }) =>
+            <li key={index}><b>{author}</b>: {body}</li>
+          )}
         </ul>
         <input
           type="text"

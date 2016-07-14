@@ -21,9 +21,7 @@ const initTwilio = () => {
             .then(channel => generalChannel = channel)
         }
 
-        generalChannel.join().then(channel => console.log('Joined "general"'))
-        generalChannel.on('messageAdded', ({ author, body }) =>
-          console.log(author, ': ', body))
+        generalChannel.join()
       })
 
       messagingClient.on('channelAdded', () => store.dispatch(getChannels()))
