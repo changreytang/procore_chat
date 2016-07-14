@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactOnRails from 'react-on-rails'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './components/App'
@@ -8,9 +9,10 @@ require('./stylesheets/index.less')
 
 initTwilio()
 
-render(
+const ChatAppClient = () =>
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('app')
-)
+  </Provider>
+
+
+ReactOnRails.register({ ChatAppClient })

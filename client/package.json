@@ -40,7 +40,12 @@
     "redux": "^3.3.1",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.0.1",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "css-loader": "^0.23.1",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "twilio-ip-messaging": "^0.10.6",
+    "style-loader": "^0.13.1"
   },
   "devDependencies": {
   }

@@ -31,6 +31,14 @@ config.module.loaders.push(
     exclude: /node_modules/,
   },
   {
+    test: /\.less$/,
+    loaders: ['style', 'css', 'less'],
+  },
+  {
+    test: /\.css$/,
+    loaders: ['style', 'css'],
+  },
+  {
     test: require.resolve('react'),
     loader: 'imports?shim=es5-shim/es5-shim&sham=es5-shim/es5-sham',
   },
