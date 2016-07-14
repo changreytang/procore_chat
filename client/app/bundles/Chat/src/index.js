@@ -7,12 +7,15 @@ import store from './store'
 import initTwilio from './twilio'
 require('./stylesheets/index.less')
 
-initTwilio()
 
-const ChatAppClient = () =>
-  <Provider store={store}>
-    <App />
-  </Provider>
+const ChatAppClient = () => {
+  initTwilio()
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  )
+}
 
 
 ReactOnRails.register({ ChatAppClient })
