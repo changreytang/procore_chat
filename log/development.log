@@ -5077,3 +5077,479 @@ Processing by UsersController#index as HTML
   [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
   Rendered users/index.html.erb within layouts/application (0.4ms)
 Completed 200 OK in 15ms (Views: 14.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2016-07-14 11:39:50 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users
+Filter chain halted as :not_logged_in_user rendered or redirected
+Completed 302 Found in 25ms (ActiveRecord: 4.1ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 11:39:51 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 1222ms (Views: 1220.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:39:52 -0700
+
+
+Started GET "/assets/app-bundle.self-c4a355485ca9f694c0fc6ebad672fd6a52456535ed89c758513123ba1f6de429.js?body=1" for ::1 at 2016-07-14 11:39:52 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:39:52 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:39:52 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (12.4ms)
+Completed 200 OK in 43ms (Views: 42.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:39:56 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 22ms (Views: 19.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:42:08 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 436ms (Views: 435.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/app-bundle.self-0c461c52cab47a8fa4e96fee42d3e22be5e1b426c6f96662f920a35cb818477e.js?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/sessions.self-4fa4e8237c6ee7fc93a5ed2ecb67d1dc7150b048561ec6902ede831be3067392.css?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/user.self-91960de9b51c8f82185e25696cb6850bda163f34cb3598039b96e8dd6be1679d.css?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/application.self-b1dcdeaebb598b2afa3af590388c72c4a1b205fbc4d99c50be730506aa11b8fa.css?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 11:42:09 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:42:09 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:42:09 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 23.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:42:52 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 34ms (Views: 33.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/user.self-91960de9b51c8f82185e25696cb6850bda163f34cb3598039b96e8dd6be1679d.css?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/sessions.self-4fa4e8237c6ee7fc93a5ed2ecb67d1dc7150b048561ec6902ede831be3067392.css?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/application.self-b1dcdeaebb598b2afa3af590388c72c4a1b205fbc4d99c50be730506aa11b8fa.css?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/app-bundle.self-0c461c52cab47a8fa4e96fee42d3e22be5e1b426c6f96662f920a35cb818477e.js?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 11:42:52 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:42:52 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:42:52 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 38ms (Views: 37.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:44:45 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 467ms (Views: 465.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 11:44:45 -0700
+
+
+Started GET "/assets/user.self-91960de9b51c8f82185e25696cb6850bda163f34cb3598039b96e8dd6be1679d.css?body=1" for ::1 at 2016-07-14 11:44:45 -0700
+
+
+Started GET "/assets/application.self-b1dcdeaebb598b2afa3af590388c72c4a1b205fbc4d99c50be730506aa11b8fa.css?body=1" for ::1 at 2016-07-14 11:44:45 -0700
+
+
+Started GET "/assets/sessions.self-4fa4e8237c6ee7fc93a5ed2ecb67d1dc7150b048561ec6902ede831be3067392.css?body=1" for ::1 at 2016-07-14 11:44:46 -0700
+
+
+Started GET "/assets/app-bundle.self-facbb34a02a7ddc8b09156dceffd9739e64793c4928fb1a2acbfdd84ba4c8425.js?body=1" for ::1 at 2016-07-14 11:44:46 -0700
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:44:46 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 11:44:46 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 11:44:46 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:44:46 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:44:46 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 24ms (Views: 23.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-07-14 11:44:56 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/users
+Filter chain halted as :not_logged_in_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 11:44:56 -0700
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 21ms (Views: 20.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:44:56 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:44:56 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 40ms (Views: 39.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:44:58 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 32ms (Views: 31.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:46:20 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 467ms (Views: 466.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/sessions.self-4fa4e8237c6ee7fc93a5ed2ecb67d1dc7150b048561ec6902ede831be3067392.css?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/app-bundle.self-428b51f87c95bdc9ec8b41ab01376a77cbade2752fbdd64aa2b9bf693d30cb9a.js?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/application.self-b1dcdeaebb598b2afa3af590388c72c4a1b205fbc4d99c50be730506aa11b8fa.css?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/user.self-91960de9b51c8f82185e25696cb6850bda163f34cb3598039b96e8dd6be1679d.css?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 11:46:20 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:46:20 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:46:21 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 25ms (Views: 25.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:47:06 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:47:07 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:48:41 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 34ms (Views: 33.6ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/sessions.self-4fa4e8237c6ee7fc93a5ed2ecb67d1dc7150b048561ec6902ede831be3067392.css?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/app-bundle.self-428b51f87c95bdc9ec8b41ab01376a77cbade2752fbdd64aa2b9bf693d30cb9a.js?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/user.self-91960de9b51c8f82185e25696cb6850bda163f34cb3598039b96e8dd6be1679d.css?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/application.self-b1dcdeaebb598b2afa3af590388c72c4a1b205fbc4d99c50be730506aa11b8fa.css?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 11:48:41 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:48:41 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:48:41 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 37ms (Views: 36.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:48:47 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:48:47 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2016-07-14 11:49:01 -0700
+Processing by SessionsController#new as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/users
+Filter chain halted as :not_logged_in_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 11:49:01 -0700
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 28.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:49:01 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:49:01 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 35ms (Views: 34.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:49:22 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 23ms (Views: 21.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:49:54 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 30ms (Views: 28.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/application.self-b1dcdeaebb598b2afa3af590388c72c4a1b205fbc4d99c50be730506aa11b8fa.css?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/user.self-91960de9b51c8f82185e25696cb6850bda163f34cb3598039b96e8dd6be1679d.css?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/sessions.self-4fa4e8237c6ee7fc93a5ed2ecb67d1dc7150b048561ec6902ede831be3067392.css?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/vendor-bundle.self-351ebf409176ab5efefe5bf05cf80658118a7bf4ea73f3182d37f9b5410a5256.js?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/app-bundle.self-428b51f87c95bdc9ec8b41ab01376a77cbade2752fbdd64aa2b9bf693d30cb9a.js?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 11:49:54 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:49:54 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:49:54 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 37ms (Views: 36.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:51:04 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:51:05 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:53:23 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 2ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:53:24 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/" for ::1 at 2016-07-14 11:53:41 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by SessionsController#new as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users
+Filter chain halted as :not_logged_in_user rendered or redirected
+Completed 302 Found in 26ms (ActiveRecord: 2.7ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 11:53:41 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 605ms (Views: 604.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:53:44 -0700
+Processing by ChatsController#token as */*
+Redirected to http://localhost:3000/sessions/new
+Filter chain halted as :logged_in_user rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sessions/new" for ::1 at 2016-07-14 11:53:44 -0700
+Processing by SessionsController#new as */*
+  Rendered sessions/new.html.erb within layouts/application (14.6ms)
+Completed 200 OK in 63ms (Views: 62.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 11:53:46 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 51ms (Views: 49.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:53:52 -0700
+Processing by ChatsController#token as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 11:53:53 -0700
+Processing by ChatsController#token as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
