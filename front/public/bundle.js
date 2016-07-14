@@ -23289,14 +23289,35 @@
 	  var channels = action.channels;
 	  var uniqueName = action.uniqueName;
 	  var message = action.message;
+	  var messages = action.messages;
 
 	  switch (type) {
 	    case 'CREATE_MESSAGING_CLIENT':
 	      return _extends({}, state, { messagingClient: messagingClient });
 	    case 'GET_CHANNELS_SUCCESS':
 	      return _extends({}, state, { channels: channels });
+	    case 'GET_MESSAGES_SUCCESS':
+	      return _extends({}, state, {
+	        channels: state.channels.map(function (channel) {
+	          if (channel.uniqueName === uniqueName) {
+	            return _extends({}, channel, { messages: messages });
+	          } else {
+	            return channel;
+	          }
+	        })
+	      });
+	    case 'MESSAGE_ADDED':
+	      return _extends({}, state, {
+	        channels: state.channels.map(function (channel) {
+	          if (channel.uniqueName === uniqueName) {
+	            var _messages = channel.messages.concat(message);
+	            return _extends({}, channel, { messages: _messages });
+	          } else {
+	            return channel;
+	          }
+	        })
+	      });
 	    case 'ACTIVATE_CHANNEL':
-	      console.log('Activating', uniqueName);
 	      return _extends({}, state, {
 	        channels: state.channels.map(function (channel) {
 	          if (channel.uniqueName === uniqueName) {
@@ -23307,7 +23328,6 @@
 	        })
 	      });
 	    case 'SEND_MESSAGE':
-	      console.log('sending', message);
 	      state.messagingClient.getChannelByUniqueName(uniqueName).then(function (channel) {
 	        return channel.sendMessage(message);
 	      });
@@ -23344,6 +23364,8 @@
 	var Channel = function Channel(_ref) {
 	  var friendlyName = _ref.friendlyName;
 	  var uniqueName = _ref.uniqueName;
+	  var messages = _ref.messages;
+	  var sendMessage = _ref.sendMessage;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'channel border' },
@@ -23359,16 +23381,35 @@
 	      _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('ul', null),
+	        _react2.default.createElement(
+	          'ul',
+	          null,
+	          messages.map(function (_ref2) {
+	            var index = _ref2.index;
+	            var body = _ref2.body;
+	            var author = _ref2.author;
+	            return _react2.default.createElement(
+	              'li',
+	              { key: index },
+	              _react2.default.createElement(
+	                'b',
+	                null,
+	                author
+	              ),
+	              ': ',
+	              body
+	            );
+	          })
+	        ),
 	        _react2.default.createElement('input', {
 	          type: 'text',
 	          className: 'messageInput',
-	          onKeyPress: function onKeyPress(_ref2) {
-	            var target = _ref2.target;
-	            var key = _ref2.key;
+	          onKeyPress: function onKeyPress(_ref3) {
+	            var target = _ref3.target;
+	            var key = _ref3.key;
 
 	            if (key === 'Enter') {
-	              (0, _actions.sendMessage)(uniqueName, target.value);
+	              sendMessage(uniqueName, target.value);
 	              target.value = '';
 	            }
 	          }
@@ -23407,9 +23448,28 @@
 	};
 
 	var activateChannel = exports.activateChannel = function activateChannel(uniqueName) {
-	  return {
-	    type: 'ACTIVATE_CHANNEL',
-	    uniqueName: uniqueName
+	  return function (dispatch) {
+	    dispatch({ type: 'GET_MESSAGES_REQUEST' });
+	    _store2.default.getState().messagingClient.getChannelByUniqueName(uniqueName).then(function (channel) {
+	      channel.on('messageAdded', function (message) {
+	        return dispatch({
+	          type: 'MESSAGE_ADDED',
+	          uniqueName: uniqueName,
+	          message: message
+	        });
+	      });
+	      return channel.getMessages();
+	    }).then(function (messages) {
+	      return dispatch({
+	        type: 'GET_MESSAGES_SUCCESS',
+	        uniqueName: uniqueName,
+	        messages: messages
+	      });
+	    });
+	    dispatch({
+	      type: 'ACTIVATE_CHANNEL',
+	      uniqueName: uniqueName
+	    });
 	  };
 	};
 
@@ -23417,8 +23477,7 @@
 	  return function (dispatch) {
 	    dispatch({ type: 'SEND_MESSAGE_REQUEST' });
 	    _store2.default.getState().messagingClient.getChannelByUniqueName(uniqueName).then(function (channel) {
-	      console.log('channel', channel);
-	      channel.sendMessage(message);
+	      return channel.sendMessage(message);
 	    });
 	  };
 	};

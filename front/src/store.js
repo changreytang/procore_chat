@@ -6,14 +6,43 @@ const initialState = {
 }
 
 const reducer = (state = initialState, action) => {
-  const { type, messagingClient, channels, uniqueName, message } = action
+  const {
+    type,
+    messagingClient,
+    channels,
+    uniqueName,
+    message,
+    messages,
+  } = action
   switch (type) {
     case 'CREATE_MESSAGING_CLIENT':
       return { ...state, messagingClient }
     case 'GET_CHANNELS_SUCCESS':
       return { ...state, channels }
+    case 'GET_MESSAGES_SUCCESS':
+      return {
+        ...state,
+        channels: state.channels.map(channel => {
+          if (channel.uniqueName === uniqueName) {
+            return { ...channel, messages }
+          } else {
+            return channel
+          }
+        }),
+      }
+    case 'MESSAGE_ADDED':
+      return {
+        ...state,
+        channels: state.channels.map(channel => {
+          if (channel.uniqueName === uniqueName) {
+            const messages = channel.messages.concat(message)
+            return { ...channel, messages }
+          } else {
+            return channel
+          }
+        }),
+      }
     case 'ACTIVATE_CHANNEL':
-      console.log('Activating', uniqueName)
       return {
         ...state,
         channels: state.channels.map(channel => {
@@ -25,7 +54,6 @@ const reducer = (state = initialState, action) => {
         }),
       }
     case 'SEND_MESSAGE':
-      console.log('sending', message)
       state.messagingClient.getChannelByUniqueName(uniqueName)
         .then(channel => channel.sendMessage(message))
       return state
