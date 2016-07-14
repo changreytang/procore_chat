@@ -8,8 +8,9 @@ import initTwilio from './twilio'
 require('./stylesheets/index.less')
 
 
-const ChatAppClient = () => {
+const ChatAppClient = ({ users }) => {
   initTwilio()
+  console.log('users', users)
   return (
     <Provider store={store}>
       <App />

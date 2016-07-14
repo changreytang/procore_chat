@@ -6473,3 +6473,40 @@ Started GET "/token" for ::1 at 2016-07-14 13:02:40 -0700
 Processing by ChatsController#token as */*
   [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 13:08:43 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  Rendered chats/home.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 434ms (Views: 432.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/app-bundle.self-0f562c28007b715792bd68f2cbc416be087762a6cfb31fd72ef12656ffa98505.js?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 13:08:43 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 13:08:44 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
