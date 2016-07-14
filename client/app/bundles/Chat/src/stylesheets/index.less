@@ -1,0 +1,81 @@
+@import 'Roboto.css';
+
+@bar-height: 30px;
+
+body {
+  font-family: Roboto;
+  margin: 0;
+  color: gray;
+}
+
+.border {
+  border: 2px solid gray;
+  border-bottom: none;
+}
+
+.chat {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: flex-end;
+  div {
+    margin-right: 18px;
+    width: 200px;
+    h4 {
+      margin: 0;
+      padding: 10px;
+    }
+  }
+  ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+  }
+  li {
+    padding: 10px;
+  }
+  .channel {
+    cursor: pointer;
+    h4 {
+      cursor: pointer;
+    }
+    li {
+      padding: 0px 10px;
+    }
+    .checkbox {
+      display: none;
+    }
+    div {
+      display: none;
+    }
+    .checkbox:checked + div {
+      display: block;
+    }
+    .messageInput {
+      width: 100%;
+      height: 39px;
+      box-sizing: border-box;
+      border: none;
+      border-top: 2px solid gray;
+    }
+  }
+  .channelList {
+    ul {
+      display: none;
+    }
+    li {
+      cursor: pointer;
+      padding: 10px;
+      &:hover {
+        background: #ddd;
+      }
+    }
+    &:hover {
+      ul {
+        display: block;
+      }
+    }
+  }
+}
