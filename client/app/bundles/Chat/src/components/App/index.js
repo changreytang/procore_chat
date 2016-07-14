@@ -8,7 +8,6 @@ const App = ({ channels }) =>
     <UserList/>
     {
       channels
-        .filter(({ active }) => !!active)
         .map((channel, i) => <Channel key={i} { ...channel } />)
     }
   </div>

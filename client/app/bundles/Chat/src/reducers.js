@@ -1,3 +1,5 @@
+import { generateUniqueChannelName } from './utils'
+
 const initialState = {
 	channels: [],
 	users: [],
@@ -13,30 +15,27 @@ const reducer = (state = initialState, action) => {
 		users,
 		id,
 		uniqueName,
+		channel,
 		message,
 		messages,
 	} = action
 	switch (type) {
 		case 'CREATE_MESSAGING_CLIENT':
-			return {...state, messagingClient
-			}
+			return {...state, messagingClient }
 		case 'GET_USERS':
-			return {...state, users
-			}
+			return {...state, users }
 		case 'GET_CURRENT_USER':
-			return {...state, currentUser
-			}
+			return {...state, currentUser }
 		case 'GET_MESSAGES':
 			return {
 					...state,
-					users: state.users.map(user => {
-					if (channel.uniqueName === uniqueName) {
-						return {...channel, messages
+					channels: state.channels.map(channel => {
+						if (channel.uniqueName === uniqueName) {
+							return { ...channel, messages }
+						} else {
+							return channel
 						}
-					} else {
-						return channel
-					}
-				}),
+					}),
 			}
 		case 'MESSAGE_ADDED':
 			return {
@@ -44,25 +43,16 @@ const reducer = (state = initialState, action) => {
 				channels: state.channels.map(channel => {
 					if (channel.uniqueName === uniqueName) {
 						const messages = channel.messages.concat(message)
-						return {...channel, messages
-						}
+						return {...channel, messages }
 					} else {
 						return channel
 					}
 				}),
 			}
 		case 'ACTIVATE_CHANNEL':
-			return {
-					...state,
-					channels: state.channels.map(channel => {
-					if (channel.uniqueName === uniqueName) {
-						return {...channel, active: true
-						}
-					} else {
-						return channel
-					}
-				}),
-			}
+			console.log('Channels:', state.channels)
+			const channels = state.channels.concat(channel)
+			return { ...state, channels }
 		case 'SEND_MESSAGE':
 			state.messagingClient.getChannelByUniqueName(uniqueName)
 				.then(channel => channel.sendMessage(message))

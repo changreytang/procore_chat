@@ -7768,3 +7768,451 @@ Started GET "/token" for ::1 at 2016-07-14 16:19:33 -0700
 Processing by ChatsController#token as */*
   [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
 Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:24:22 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered chats/home.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 960ms (Views: 935.7ms | ActiveRecord: 2.8ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/app-bundle.self-5d64b7350f2bb61459241c8dad362f7074676ab0d1d1a70991bbe3544d7c9fd2.js?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:24:23 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:24:24 -0700
+Processing by ChatsController#token as */*
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 1]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/sessions" for ::1 at 2016-07-14 16:24:55 -0700
+Processing by SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"1YR+NF3jPJtYnSjmMgPBg4JwiPxFoM4E/6OegEHbexYt5J4wdtEghiE2oc8cA5zXM4GQ5ypwd1TK/2nyWVG+QA=="}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 2ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for ::1 at 2016-07-14 16:24:55 -0700
+Processing by SessionsController#new as HTML
+  Rendered sessions/new.html.erb within layouts/application (347.2ms)
+Completed 200 OK in 366ms (Views: 365.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions" for ::1 at 2016-07-14 16:25:02 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uMPpg4cKtDO2gyJuWUHaJYEC5JUcWMQyG4fQIPwPWdZAowmHrDioLs8oq0d3QYdxMPP8jnOIfWIu2ydS5IWcgA==", "session"=>{"email"=>"jamesvaughan@gmail.com"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "jamesvaughan@gmail.com"]]
+  Rendered sessions/new.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/new" for ::1 at 2016-07-14 16:25:06 -0700
+Processing by UsersController#new as HTML
+  Rendered users/_error_messages.html.erb (1.9ms)
+  Rendered users/new.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 29ms (Views: 28.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/sessions" for ::1 at 2016-07-14 16:25:16 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"b0gMm8NBhJ00oLKYKMVfP6wvHTFIiowiPXoIemkvD1yXKOyf6HOYgE0LO7EGxQJrHd4FKidaNXIIJv8IcaXKCg==", "session"=>{"email"=>"user1@gmail.com"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1[0m  [["email", "user1@gmail.com"]]
+  Rendered sessions/new.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 17ms (Views: 15.7ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/sessions" for ::1 at 2016-07-14 16:25:41 -0700
+Processing by SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"p5R+VyH1ZgxG4OkJSCFfdWoUY/qvZKJEYOVGa6YyDZtf9J5TCsd6ET9LYCBmIQIh2+V74cC0GxRVubEZvrjIzQ==", "session"=>{"email"=>"name1@gmail.com"}, "commit"=>"Log in"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1 LIMIT 1  [["email", "name1@gmail.com"]]
+Redirected to http://localhost:3000/users
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for ::1 at 2016-07-14 16:25:41 -0700
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered users/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 16ms (Views: 15.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:25:45 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users"
+  Rendered chats/home.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:25:46 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:30:04 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered chats/home.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 411ms (Views: 410.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:30:04 -0700
+
+
+Started GET "/assets/app-bundle.self-d9c8419198521879a85daff49954f03233ca66e1700c6975e11cdda4bcf326c1.js?body=1" for ::1 at 2016-07-14 16:30:04 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:30:04 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:30:04 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:30:04 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:30:04 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:30:05 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:30:05 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:30:07 -0700
+Processing by ChatsController#token as */*
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:31:52 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered chats/home.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 419ms (Views: 418.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/app-bundle.self-0fb7ada733e4e5ee16594596d6f2dbbae1b8b824394fa00c2a1f9bd7b1d7897b.js?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:31:53 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:31:54 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:32:05 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered chats/home.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 28ms (Views: 26.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/app-bundle.self-0fb7ada733e4e5ee16594596d6f2dbbae1b8b824394fa00c2a1f9bd7b1d7897b.js?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:32:05 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:32:06 -0700
+Processing by ChatsController#token as */*
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:33:52 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered chats/home.html.erb within layouts/application (3.1ms)
+Completed 200 OK in 493ms (Views: 492.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/app-bundle.self-690e898c97000dca2215e1e18d6a8bcb07dcdf3e2c81a430c1b5bc0bd693d0af.js?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:33:52 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:33:53 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:35:19 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered chats/home.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 416ms (Views: 415.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/app-bundle.self-928199bb5e61cc6d26d651f98c2efd58ea6cc4348558f54cc29b44342b8d3a2c.js?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:35:20 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:35:21 -0700
+Processing by ChatsController#token as */*
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:45:40 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"
+  Rendered chats/home.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 473ms (Views: 471.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/app-bundle.self-f5ff5c992854a2cc446a0ead6a277195c9313ae982ec5ae928109e2358222d72.js?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:45:41 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:45:42 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:46:32 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered chats/home.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 480ms (Views: 479.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/app-bundle.self-429f60f34162b5099cd3cba3149b882fa882ef6992bd79e10b6da062d97de025.js?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:46:32 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:46:33 -0700
+Processing by ChatsController#token as */*
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:47:45 -0700
+Processing by ChatsController#home as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"
+  Rendered chats/home.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 417ms (Views: 416.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/app-bundle.self-1d732c0fcdad9eb1ec84b51b39c04f4538567a827be6b25cbdb6f2fc8bf9d9bc.js?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:47:45 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:47:46 -0700
+Processing by ChatsController#token as */*
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1[0m  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/chats" for ::1 at 2016-07-14 16:49:19 -0700
+Processing by ChatsController#home as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+  Rendered chats/home.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 413ms (Views: 412.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/chats.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/user.self-201e6a1dab2d1b9d8a6ffa8d75b190997fc2036f40385eccb1991bdb4947499e.css?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/app-bundle.self-e0495309292f3502fe71eeacc0471b8f4ba803a77c2adebe95d332f1842c0b80.js?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/application.self-87847ae923a159f88cce0f3adcf3987e3de05e33a09e2a61c2803caa626814e7.css?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/sessions.self-3f8f79c6ebe9c67b47e519552d339c57287be84a93082bfb3228c180ec0feeda.css?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/application.self-f596b8eac96cdcac7d05c7aa54862f242b53580b2262927187bf54edc0bf5dd6.js?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/assets/vendor-bundle.self-cdb37bc3ca37512d4c135e831a56ae87fe86d11e5c7786387635a9218dbc205d.js?body=1" for ::1 at 2016-07-14 16:49:19 -0700
+
+
+Started GET "/token" for ::1 at 2016-07-14 16:49:21 -0700
+Processing by ChatsController#token as */*
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT 1  [["id", 2]]
+Completed 200 OK in 1ms (Views: 0.1ms | ActiveRecord: 0.2ms)

@@ -1,7 +1,5 @@
 import store from './store'
-
-const generateUniqueChannelName = (id1, id2) =>
-	id1 < id2 ? `${id1}:${id2}` : `${id2}:${id1}`
+import { generateUniqueChannelName } from './utils'
 
 export
 const createMessagingClient = messagingClient => ({
@@ -14,43 +12,36 @@ export
 const activateChannel = id => dispatch => {
 
 	const uniqueName = generateUniqueChannelName(store.getState().currentUser.id, id)
-	console.log(uniqueName)
+
 	const setupChannel = channel => {
 		channel.join()
+		channel.getMessages().then(messages => dispatch({
+			type: 'GET_MESSAGES',
+			uniqueName,
+			messages,
+		}))
 		channel.on('messageAdded', message => dispatch({
 			type: 'MESSAGE_ADDED',
 			uniqueName,
 			message,
 		}))
+		dispatch({
+			type: 'ACTIVATE_CHANNEL',
+			channel
+		})
 	}
-	
 
 	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => {
 			if(!channel) {
 				store.getState().messagingClient.createChannel({
 					uniqueName,
-					friendName: uniqueName,
+					friendlyName: `${uniqueName} (friendly)`,
 				}).then(setupChannel)
-			}
-			else {
+			} else {
 				setupChannel(channel)
 			}
-			return channel.getMessages()
 		})
-		.then(messages => {
-			dispatch({
-				type: 'GET_MESSAGES',
-				uniqueName,
-				messages,
-			})
-		})
-
-	dispatch({
-		type: 'ACTIVATE_CHANNEL',
-		uniqueName
-	})
-
 }
 
 
@@ -78,7 +69,7 @@ const getUsers = users => ({
 	users,
 })
 
-export 
+export
 const getCurrentUser = currentUser => ({
 	type: 'GET_CURRENT_USER',
 	currentUser,
