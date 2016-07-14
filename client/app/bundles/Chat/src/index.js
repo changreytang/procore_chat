@@ -5,12 +5,13 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import store from './store'
 import initTwilio from './twilio'
+import { getUsers } from '../../actions'
 require('./stylesheets/index.less')
 
 
-const ChatAppClient = ({ users }) => {
+const ChatAppClient = users => {
   initTwilio()
-  console.log('users', users)
+  store.dispatch(getUsers(users))
   return (
     <Provider store={store}>
       <App />
