@@ -18,8 +18,9 @@ const Channel = ({ friendlyName, uniqueName, messages, sendMessage }) =>
           className="messageInput"
           onKeyPress={({ target, key }) => {
             if (key === 'Enter') {
-              sendMessage(uniqueName, target.value)
+              const message = target.value
               target.value = ''
+              sendMessage(uniqueName, message)
             }
           }}
         />
