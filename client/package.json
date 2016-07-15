@@ -47,6 +47,11 @@
     "twilio-ip-messaging": "^0.10.6",
     "style-loader": "^0.13.1"
   },
-  "devDependencies": {
+  "babel": {
+    "presets": [
+      "es2015",
+      "react",
+      "stage-0"
+    ]
   }
 }

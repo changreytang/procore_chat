@@ -9,8 +9,8 @@ import { getUsers, getCurrentUser } from './actions'
 require('./stylesheets/index.less')
 
 
-const ChatAppClient = ({ users, currentUser }) => {
-  initTwilio()
+const ChatAppClient = ({ token, users, currentUser }) => {
+  initTwilio(token)
   store.dispatch(getUsers(users))
   store.dispatch(getCurrentUser(currentUser))
   return (
