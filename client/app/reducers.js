@@ -12,16 +12,6 @@ export default (state, action) => {
 			return { ...state, users }
 		case 'GET_CURRENT_USER':
 			return { ...state, currentUser }
-		case 'TOGGLE_EXPAND':
-			console.log('toggle', uniqueName)
-			channels = state.channels.map(channel => {
-				if (channel.uniqueName === uniqueName) {
-					return { ...channel, expanded: !channel.expanded }
-				} else {
-					return channel
-				}
-			})
-			return { ...state, channels }
 		case 'GET_MESSAGES':
 			channels = state.channels.map(channel => {
 				if (channel.uniqueName === uniqueName) {
@@ -45,6 +35,7 @@ export default (state, action) => {
 			channels = state.channels.concat({...channel, name})
 			return { ...state, channels }
 		case 'CLOSE_CHANNEL':
+			console.log('closing', uniqueName)
 			channels = state.channels.filter(channel => channel.uniqueName != uniqueName)
 			return { ...state, channels }
 		default:

@@ -15,7 +15,7 @@ const initialState = {
 const store = createStore(
   reducer,
   initialState,
-  applyMiddleware(thunk)
+  applyMiddleware(thunk, logger)
 )
 
 export default store

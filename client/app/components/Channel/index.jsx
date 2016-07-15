@@ -1,38 +1,57 @@
-import React, { PropTypes } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { sendMessage, closeChannel, toggleExpand } from '../../actions'
 
-const Channel = ({ name, toggleExpand, expanded, uniqueName, messages, closeChannel }) =>
-  <div className="channel border">
-    <b>{name}</b>
-    <button onClick={() => closeChannel(uniqueName)}>CLOSE</button>
-    <button onClick={() => toggleExpand(uniqueName)}>TOGGLE</button>
-    {
-      expanded ?
-        <div>
-          <ul>
-            {messages.map(({ index, body, author }) =>
-              <li key={index}><b>{author}</b>: {body}</li>
-            )}
-          </ul>
-          <input
-            type="text"
-            className="messageInput"
-            onKeyPress={({ target, key }) => {
-              if (key === 'Enter') {
-                const message = target.value
-                target.value = ''
-                sendMessage(uniqueName, message)
-              }
-            }}
-          />
-        </div> : null
+class Channel extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { expanded: false }
+    this.toggleExpand = this.toggleExpand.bind(this)
+  }
+  componentDidUpdate() {
+    if (this.state.expanded) {
+      this.refs.messages.scrollTop = this.refs.messages.scrollHeight
     }
-  </div>
+  }
+  toggleExpand() {
+    this.setState({ expanded: !this.state.expanded })
+  }
+  render() {
+    return (
+      <div className="channel border">
+        <b>{this.props.name}</b>
+        <button onClick={() => this.props.closeChannel(this.props.uniqueName)}>CLOSE</button>
+        <button onClick={this.toggleExpand}>TOGGLE</button>
+        {
+          this.state.expanded ?
+            <div>
+              <ul ref="messages">
+                {this.props.messages.map(({ index, body, author }) =>
+                  <li key={index} style={{ textAlign: this.props.currentUser.name === author ? 'right' : 'left'}}>
+                    <b>{author}</b>: {body}
+                  </li>
+                )}
+              </ul>
+              <input
+                type="text"
+                className="messageInput"
+                onKeyPress={({ target, key }) => {
+                  if (key === 'Enter') {
+                    sendMessage(this.props.uniqueName, target.value)
+                    target.value = ''
+                  }
+                }}
+              />
+            </div> : null
+        }
+      </div>
+    )
+  }
+}
 
-const mapStateToProps = ({ channels }, { uniqueName }) => {
+const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
   const channel = channels.find(c => c.uniqueName === uniqueName)
-  return { ...channel }
+  return { ...channel, currentUser }
 }
 
 export default connect(
