@@ -10,3 +10,5 @@
 	email = "name#{n}@gmail.com"
 	User.create!(name: name, email: email)
 end
+User.create!([{ name: "James Vaughan", email: "jamesvaughan@gmail.com"}, { name: "Vivek Patel", email: "vivekpatel@gmail.com"},
+				{ name: "Rey Tang", email: "reytang@gmail.com"}])
