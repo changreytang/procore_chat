@@ -2,7 +2,7 @@ import { generateUniqueChannelName } from './utils'
 
 export default (state, action) => {
 	let channels
-	const { type, currentUser, users, uniqueName, channel,
+	const { type, currentUser, users, uniqueName, name, channel,
 		      message, messages, messagingClient } = action
 
 	switch (type) {
@@ -42,7 +42,7 @@ export default (state, action) => {
 			})
 			return { ...state, channels }
 		case 'ACTIVATE_CHANNEL':
-			channels = state.channels.concat(channel)
+			channels = state.channels.concat({...channel, name})
 			return { ...state, channels }
 		case 'CLOSE_CHANNEL':
 			channels = state.channels.filter(channel => channel.uniqueName != uniqueName)

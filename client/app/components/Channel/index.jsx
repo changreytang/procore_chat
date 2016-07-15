@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { sendMessage, closeChannel, toggleExpand } from '../../actions'
 
-const Channel = ({ toggleExpand, expanded, friendlyName, uniqueName, messages, closeChannel }) =>
+const Channel = ({ name, toggleExpand, expanded, uniqueName, messages, closeChannel }) =>
   <div className="channel border">
     <b>{friendlyName}</b>
     <button onClick={() => closeChannel(uniqueName)}>CLOSE</button>

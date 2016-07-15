@@ -10,17 +10,17 @@ export const setMessagingClient = token => {
 	}
 }
 
-export const activateChannel = id => dispatch => {
+export const activateChannel = ( id, name ) => dispatch => {
 
 	const uniqueName = generateUniqueChannelName(store.getState().currentUser.id, id)
 
-	const setupChannel = channel => {
+	const setupChannel = ( channel ) => {
 		channel.join()
 		channel.getMessages().then(messages =>
 			dispatch(getMessages(uniqueName, messages)))
 		channel.on('messageAdded', message =>
 			dispatch(messageAdded(uniqueName, message)))
-		dispatch({ type: 'ACTIVATE_CHANNEL', channel })
+		dispatch({ type: 'ACTIVATE_CHANNEL', channel, name, })
 	}
 
 	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
@@ -31,7 +31,8 @@ export const activateChannel = id => dispatch => {
 					friendlyName: `${uniqueName} (friendly)`,
 				}).then(setupChannel)
 			} else {
-				setupChannel(channel)
+				if(!(store.getState().channels.map(channel => channel.uniqueName).includes(uniqueName)))
+					setupChannel(channel)
 			}
 		})
 }
