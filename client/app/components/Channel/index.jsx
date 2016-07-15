@@ -19,9 +19,8 @@ class Channel extends Component {
   render() {
     return (
       <div className="channel border">
-        <b>{this.props.name}</b>
-        <button onClick={() => this.props.closeChannel(this.props.uniqueName)}>CLOSE</button>
-        <button onClick={this.toggleExpand}>TOGGLE</button>
+        <b onClick={() => this.toggleExpand()}>{this.props.name}</b>
+        <i className="material-icons" onClick={() => this.props.closeChannel(this.props.uniqueName)}>close</i>
         {
           this.state.expanded ?
             <div>

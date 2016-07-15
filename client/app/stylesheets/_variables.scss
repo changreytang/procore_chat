@@ -1,0 +1,108 @@
+//
+// Variables
+// ---------
+
+@function palette($color, $tone: base) {
+  @return map-get(map-get($palette, $color), $tone);
+}
+
+// UX Approved Color Pallette
+$black1: #343739;
+$black2: #8d9299;
+
+$gray1: #676767;
+$gray2: #939393;
+$gray3: #c3c2c2;
+$gray4: #e7e7e7;
+$gray6: #f2f2f2;
+
+$orange1: #f47e42;
+
+$gold1: #918451;
+$gold2: #f4ebba;
+
+$blue1: #1e519f;
+$blue2: #83b9d5;
+$blue3: #cfe2e8;
+$blue4: #f2f6f9;
+
+$green1: #4dc489;
+$green2: #9fceb6;
+
+$red1: #d33d3d;
+$red2: #e08585;
+$red3: #ffcccc;
+
+$white1: #ffffff;
+
+
+$palette: (
+  black: (
+    base: $black1,
+    secondary: $black2
+  ),
+  white: (
+    base: $white1
+  ),
+  gray: (
+    xdark: $gray1,
+    dark: $gray2,
+    base: $gray3,
+    light: $gray4,
+    xlight: $gray6
+  ),
+  orange: (
+    base: $orange1,
+    secondary1: #e36937,
+    secondary2: #d04e33,
+    marketing: #ff6600
+  ),
+  yellow: (
+    base: #e8b83f,
+  ),
+  gold: (
+    base: $gold1,
+    light: $gold2
+  ),
+  red: (
+    base: $red1,
+    light: $red2,
+    xlight: $red3
+  ),
+  green: (
+    dark: #65b58b,
+    base: $green1,
+    light: $green2
+  ),
+  blue: (
+    dark: $blue1,
+    base: $blue2,
+    light: $blue3,
+    xlight: $blue4
+  )
+);
+
+$font-awesome: (
+  sort-none: '\f1db',
+  sort-desc: '\f0d8',
+  sort-asc: '\f0d7',
+  pencil: '\f040'
+);
+
+
+// -------------------------------------------------------------
+
+
+// main font
+$main-font: Lato, sans-serif;
+
+//ORANGES
+$orange-red:  #FFA500 !default; // Deprecating
+
+//Transistion
+$default-trans: all .2s ease-in;
+
+$sidebarWidth: 264px;
+
+//Standard border radius used in app
+$default-border-radius:2px;
