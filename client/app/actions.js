@@ -36,6 +36,11 @@ export const activateChannel = id => dispatch => {
 		})
 }
 
+export const toggleExpand = uniqueName => ({
+	type: 'TOGGLE_EXPAND',
+	uniqueName,
+})
+
 export const messageAdded = (uniqueName, message) => ({
 	type: 'MESSAGE_ADDED',
 	uniqueName,
