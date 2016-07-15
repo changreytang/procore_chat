@@ -34,6 +34,9 @@ export default (state, action) => {
 		case 'ACTIVATE_CHANNEL':
 			channels = state.channels.concat(channel)
 			return { ...state, channels }
+		case 'CLOSE_CHANNEL':
+			channels = state.channels.filter(channel => channel.uniqueName != uniqueName)
+			return { ...state, channels }
 		default:
 			return state
 	}

@@ -36,6 +36,11 @@ export const activateChannel = id => dispatch => {
 		})
 }
 
+export const closeChannel = uniqueName => ({
+	type: 'CLOSE_CHANNEL',
+	uniqueName,
+})
+
 export const messageAdded = (uniqueName, message) => ({
 	type: 'MESSAGE_ADDED',
 	uniqueName,
