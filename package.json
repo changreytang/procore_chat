@@ -16,6 +16,10 @@
     "build:dev:client": "(cd client && npm run build:dev:client --silent)",
     "test": "rspec"
   },
+  "cacheDirectories": [
+  "node_modules",
+  "client/node_modules"
+  ],
   "dependencies": {
   }
 }
