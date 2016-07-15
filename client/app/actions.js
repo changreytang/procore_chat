@@ -37,6 +37,11 @@ export const activateChannel = ( id, name ) => dispatch => {
 		})
 }
 
+export const toggleExpand = uniqueName => ({
+	type: 'TOGGLE_EXPAND',
+	uniqueName,
+})
+
 export const closeChannel = uniqueName => ({
 	type: 'CLOSE_CHANNEL',
 	uniqueName,
