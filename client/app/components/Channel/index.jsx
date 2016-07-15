@@ -4,9 +4,8 @@ import { sendMessage, closeChannel, toggleExpand } from '../../actions'
 
 const Channel = ({ name, toggleExpand, expanded, uniqueName, messages, closeChannel }) =>
   <div className="channel border">
-    <b>{name}</b>
-    <button onClick={() => closeChannel(uniqueName)}>CLOSE</button>
-    <button onClick={() => toggleExpand(uniqueName)}>TOGGLE</button>
+    <b onClick={() => toggleExpand(uniqueName)}>{name}</b>
+    <i className="material-icons" onClick={() => closeChannel(uniqueName)}>close</i>
     {
       expanded ?
         <div>
