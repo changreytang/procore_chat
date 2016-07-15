@@ -1,11 +1,6 @@
 import store from './store'
+import messagingClient from './twilio'
 import { generateUniqueChannelName } from './utils'
-
-export const createMessagingClient = messagingClient => ({
-	type: 'CREATE_MESSAGING_CLIENT',
-	messagingClient,
-})
-
 
 export const activateChannel = id => dispatch => {
 
@@ -13,26 +8,17 @@ export const activateChannel = id => dispatch => {
 
 	const setupChannel = channel => {
 		channel.join()
-		channel.getMessages().then(messages => dispatch({
-			type: 'GET_MESSAGES',
-			uniqueName,
-			messages,
-		}))
-		channel.on('messageAdded', message => dispatch({
-			type: 'MESSAGE_ADDED',
-			uniqueName,
-			message,
-		}))
-		dispatch({
-			type: 'ACTIVATE_CHANNEL',
-			channel
-		})
+		channel.getMessages().then(messages =>
+			dispatch(getMessages(uniqueName, messages)))
+		channel.on('messageAdded', message =>
+			dispatch(messageAdded(uniqueName, message)))
+		dispatch({ type: 'ACTIVATE_CHANNEL', channel })
 	}
 
-	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
+	messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => {
 			if(!channel) {
-				store.getState().messagingClient.createChannel({
+				messagingClient.createChannel({
 					uniqueName,
 					friendlyName: `${uniqueName} (friendly)`,
 				}).then(setupChannel)
@@ -42,15 +28,25 @@ export const activateChannel = id => dispatch => {
 		})
 }
 
+export const messageAdded = (uniqueName, message) => ({
+	type: 'MESSAGE_ADDED',
+	uniqueName,
+	message,
+})
 
+export const getMessages = (uniqueName, messages) => ({
+	type: 'GET_MESSAGES',
+	uniqueName,
+	messages,
+})
 
-export const sendMessage = (uniqueName, message) => dispatch => {
-	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
+export const sendMessage = (uniqueName, message)  => {
+	messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
 }
 
 export const getChannels = () => dispatch => {
-	store.getState().messagingClient.getChannels()
+	messagingClient.getChannels()
 		.then(channels => {
 			dispatch({
 				type: 'GET_CHANNELS',
