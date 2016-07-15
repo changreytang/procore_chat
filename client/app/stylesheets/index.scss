@@ -1,6 +1,6 @@
 @import 'Roboto.css';
 
-@bar-height: 30px;
+$bar-height: 30px;
 
 body {
   font-family: Roboto;
@@ -43,15 +43,6 @@ body {
     }
     li {
       padding: 0px 10px;
-    }
-    .checkbox {
-      display: none;
-    }
-    div {
-      display: none;
-    }
-    .checkbox:checked + div {
-      display: block;
     }
     .messageInput {
       width: 100%;

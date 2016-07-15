@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import App from './components/App'
 import store from './store'
 import { getUsers, getCurrentUser, setMessagingClient } from './actions'
-require('./stylesheets/index.less')
+require('./stylesheets/index.scss')
 
 
 const ChatAppClient = ({ token, users, currentUser }) => {

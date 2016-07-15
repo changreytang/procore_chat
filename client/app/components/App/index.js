@@ -6,10 +6,7 @@ import Channel from '../Channel'
 const App = ({ channels }) =>
   <div className="chat">
     <UserList/>
-    {
-      channels
-        .map((channel, i) => <Channel key={i} { ...channel } />)
-    }
+    {channels.map((channel, i) => <Channel key={i} { ...channel } />)}
   </div>
 
 const mapStateToProps = ({ channels }) => ({ channels })

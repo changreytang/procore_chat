@@ -17,6 +17,5 @@
     "test": "rspec"
   },
   "dependencies": {
-    "react-on-rails": "^6.0.5"
   }
 }
