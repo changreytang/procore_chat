@@ -41,6 +41,11 @@ export const toggleExpand = uniqueName => ({
 	uniqueName,
 })
 
+export const closeChannel = uniqueName => ({
+	type: 'CLOSE_CHANNEL',
+	uniqueName,
+})
+
 export const messageAdded = (uniqueName, message) => ({
 	type: 'MESSAGE_ADDED',
 	uniqueName,
