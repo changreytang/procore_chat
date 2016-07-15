@@ -2,11 +2,11 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { sendMessage, closeChannel } from '../../actions'
 
-const Channel = ({ friendlyName, uniqueName, messages, sendMessage, closeChannel }) =>
+const Channel = ({ name, uniqueName, messages, sendMessage, closeChannel }) =>
   <div className="channel border">
+    <button onClick={() => closeChannel(uniqueName)}>CLOSE</button>
     <label>
-      <b>{friendlyName}</b>
-      <button onClick={() => closeChannel(uniqueName)}>CLOSE</button>
+      <b>{name}</b>
       <input type="checkbox" className="checkbox" />
       <div>
         <ul>

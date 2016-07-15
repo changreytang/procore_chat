@@ -6,7 +6,7 @@ const UserList = ({ users, activateChannel }) =>
 	<div className="channelList border">
 		<ul>
 			{users.map(({ id, name }) =>
-				<li key={id} onClick={() => activateChannel(id)}>
+				<li key={id} onClick={() => activateChannel(id, name)}>
 				{name}
 				</li>
 			)}
