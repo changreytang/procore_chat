@@ -1,15 +1,13 @@
 import store from './store'
 import { generateUniqueChannelName } from './utils'
 
-export
-const createMessagingClient = messagingClient => ({
+export const createMessagingClient = messagingClient => ({
 	type: 'CREATE_MESSAGING_CLIENT',
 	messagingClient,
 })
 
 
-export
-const activateChannel = id => dispatch => {
+export const activateChannel = id => dispatch => {
 
 	const uniqueName = generateUniqueChannelName(store.getState().currentUser.id, id)
 
@@ -46,14 +44,12 @@ const activateChannel = id => dispatch => {
 
 
 
-export
-const sendMessage = (uniqueName, message) => dispatch => {
+export const sendMessage = (uniqueName, message) => dispatch => {
 	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
 }
 
-export
-const getChannels = () => dispatch => {
+export const getChannels = () => dispatch => {
 	store.getState().messagingClient.getChannels()
 		.then(channels => {
 			dispatch({
@@ -63,14 +59,12 @@ const getChannels = () => dispatch => {
 		})
 }
 
-export
-const getUsers = users => ({
+export const getUsers = users => ({
 	type: 'GET_USERS',
 	users,
 })
 
-export
-const getCurrentUser = currentUser => ({
+export const getCurrentUser = currentUser => ({
 	type: 'GET_CURRENT_USER',
 	currentUser,
 })
