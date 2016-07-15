@@ -4,13 +4,12 @@ import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import App from './components/App'
 import store from './store'
-import { initTwilio } from './twilio'
-import { getUsers, getCurrentUser } from './actions'
+import { getUsers, getCurrentUser, setMessagingClient } from './actions'
 require('./stylesheets/index.less')
 
 
 const ChatAppClient = ({ token, users, currentUser }) => {
-  initTwilio(token)
+  store.dispatch(setMessagingClient(token))
   store.dispatch(getUsers(users))
   store.dispatch(getCurrentUser(currentUser))
   return (

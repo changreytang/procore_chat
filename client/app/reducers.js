@@ -3,9 +3,11 @@ import { generateUniqueChannelName } from './utils'
 export default (state, action) => {
 	let channels
 	const { type, currentUser, users, uniqueName, channel,
-		      message, messages } = action
+		      message, messages, messagingClient } = action
 
 	switch (type) {
+		case 'SET_MESSAGING_CLIENT':
+			return { ...state, messagingClient }
 		case 'GET_USERS':
 			return { ...state, users }
 		case 'GET_CURRENT_USER':

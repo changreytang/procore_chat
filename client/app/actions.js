@@ -1,6 +1,14 @@
 import store from './store'
-import messagingClient from './twilio'
 import { generateUniqueChannelName } from './utils'
+
+export const setMessagingClient = token => {
+  const accessManager = new Twilio.AccessManager(token)
+  const messagingClient = new Twilio.IPMessaging.Client(accessManager)
+	return {
+		type: 'SET_MESSAGING_CLIENT',
+		messagingClient,
+	}
+}
 
 export const activateChannel = id => dispatch => {
 
@@ -15,10 +23,10 @@ export const activateChannel = id => dispatch => {
 		dispatch({ type: 'ACTIVATE_CHANNEL', channel })
 	}
 
-	messagingClient.getChannelByUniqueName(uniqueName)
+	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => {
 			if(!channel) {
-				messagingClient.createChannel({
+				store.getState().messagingClient.createChannel({
 					uniqueName,
 					friendlyName: `${uniqueName} (friendly)`,
 				}).then(setupChannel)
@@ -41,24 +49,16 @@ export const getMessages = (uniqueName, messages) => ({
 })
 
 export const sendMessage = (uniqueName, message)  => {
-	messagingClient.getChannelByUniqueName(uniqueName)
+	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
 }
 
-export const getChannels = () => dispatch => {
-	messagingClient.getChannels()
-		.then(channels => {
-			dispatch({
-				type: 'GET_CHANNELS',
-				channels,
-			})
-		})
-}
-
-export const getUsers = users => ({
+export const getUsers = users => {
+	return {
 	type: 'GET_USERS',
 	users,
-})
+}
+}
 
 export const getCurrentUser = currentUser => ({
 	type: 'GET_CURRENT_USER',
