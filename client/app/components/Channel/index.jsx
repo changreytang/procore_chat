@@ -29,6 +29,5 @@ const Channel = ({ friendlyName, uniqueName, messages, sendMessage }) =>
   </div>
 
 export default connect(
-  state => state,
-  { sendMessage }
+  state => ({ ...state, sendMessage })
 )(Channel)

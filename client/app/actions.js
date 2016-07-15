@@ -48,11 +48,9 @@ export const getMessages = (uniqueName, messages) => ({
 	messages,
 })
 
-export const sendMessage = (uniqueName, message)  => {
+export const sendMessage = (uniqueName, message) => {
 	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
-		.then(channel => {
-			console.log('here')
-			channel.sendMessage(message)})
+		.then(channel => channel.sendMessage(message))
 }
 
 export const getUsers = users => {
