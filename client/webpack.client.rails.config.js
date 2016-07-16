@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path')
 const config = require('./webpack.client.base.config');
 const devBuild = process.env.NODE_ENV !== 'production';
 
@@ -37,6 +38,10 @@ config.module.loaders.push(
     loader: 'imports?jQuery=jquery',
   }
 );
+
+config.sassLoader = {
+  includePaths: [path.resolve(__dirname, './app/stylesheets')]
+}
 
 module.exports = config;
 

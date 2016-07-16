@@ -1,16 +1,11 @@
-@import "Roboto.css";
+@import 'variables';
 
 $bar-height: 30px;
 
 body {
-    font-family: Roboto;
+    font-family: $main-font;
     margin: 0;
-    color: gray;
-}
-
-.border {
-    border: 2px solid gray;
-    border-bottom: none;
+    color: $gray1;
 }
 
 .chat {
@@ -21,70 +16,74 @@ body {
     flex-direction: row-reverse;
     align-items: flex-end;
 
-    div {
-        margin-right: 18px;
-        width: 200px;
-
-        h4 {
-            margin: 0;
-            padding: 10px;
-        }
-    }
-
-    ul {
-        list-style: none;
-        margin: 0px;
-        padding: 0px;
-    }
-
-    li {
-        padding: 10px;
-    }
-
     .channel {
+      width: 200px;
+      margin-right: 18px;
+      outline: 2px solid $gray1;
+      border-bottom: none;
+
+      .top {
         cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        background: $gray6;
+      }
 
-        h4 {
-            cursor: pointer;
+      .messages {
+        height: 300px;
+        overflow: auto;
+        border-bottom: 2px solid $gray1;
+        .message {
+          padding: 5px;
+          margin: 2px;
+          border-radius: 5px;
+          clear: both;
         }
+        .me {
+          background: $orange1;
+          color: $gray6;
+          float: right;
+        }
+        .other {
+          background: $gray4;
+          float: left;
+          color: $gray1;
+        }
+      }
 
-        li {
-            padding: 0px 10px;
-        }
-
-        ul {
-            height: 200px;
-            overflow: auto;
-        }
-
-        .messageInput {
-            width: 100%;
-            height: 39px;
-            box-sizing: border-box;
-            border: none;
-            border-top: 2px solid gray;
-        }
+      .messageInput {
+        height: 39px;
+        border: none;
+        width: 100%;
+      }
     }
 
     .channelList {
-        ul {
-            display: none;
+        outline: 2px solid $gray1;
+        border-bottom: none;
+        width: 200px;
+        margin-right: 20px;
+        h4 {
+          margin: 0;
+          padding: 10px;
         }
-
-        li {
+        ul {
+          display: none;
+          list-style: none;
+          padding: 0;
+          li {
             cursor: pointer;
             padding: 10px;
-
             &:hover {
-                background: #F47E42;
-                color: #e2eafc;
+              background: $orange1;
+              color: $gray6;
             }
+          }
         }
-
         &:hover {
-            ul {
-                display: block;
-            }
+          ul {
+            display: block;
+          }
         }
     }
 }
