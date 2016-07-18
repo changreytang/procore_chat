@@ -17,5 +17,5 @@ const UserList = ({ users, activateChannel }) =>
 export
 default connect(
   state => state,
-  { activateChannel },
+  { activateChannel }
 )(UserList)

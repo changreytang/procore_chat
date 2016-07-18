@@ -23,10 +23,12 @@ body {
       border-bottom: none;
 
       .top {
-        cursor: pointer;
         display: flex;
         justify-content: space-between;
         background: $gray6;
+        b {
+          cursor: pointer;
+        }
       }
 
       .messages {
