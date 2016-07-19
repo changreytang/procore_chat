@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 $bar-height: 30px;
 
@@ -8,96 +8,125 @@ body {
 }
 
 #chat {
-  #channelList {
-    outline: 2px solid $gray1;
-    position: fixed;
-    bottom: 0;
-    right: 20px;
-    border-bottom: none;
-    width: 200px;
-    b {
-      padding: 10px;
-      height: 30px;
-      line-height: 30px;
-    }
-    #list {
-      display: none;
-      .on, .off {
-        width: 10px;
-        height: 10px;
-        border-radius: 5px;
-      }
-      .on {
-        background: $green1;
-      }
-      .off {
-        background: $red1;
-      }
-      .user {
+    #channelList {
         cursor: pointer;
-        padding: 10px;
+        outline: 2px solid $gray1;
+        position: fixed;
+        bottom: 0;
+        right: 20px;
+        border-bottom: none;
+        width: 200px;
+
+        b {
+            padding: 10px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #list {
+            display: block;
+
+            .on, .off {
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+            }
+
+            .on {
+                background: $green1;
+            }
+
+            .off {
+                background: $red1;
+            }
+
+            .user {
+                cursor: pointer;
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                &:hover {
+                    background: $orange1;
+                    color: $gray6;
+                }
+            }
+        }
+
+        // &:hover {
+        //   #list {
+        //     display: block;
+        //   }
+        // }
+   
+    }
+
+    #channels {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
-        &:hover {
-          background: $orange1;
-          color: $gray6;
+        flex-direction: row-reverse;
+        align-items: flex-end;
+        position: fixed;
+        bottom: 0;
+        right: 220px;
+
+        .channel {
+            width: 200px;
+            flex-shrink: 0;
+            margin-right: 18px;
+            outline: 2px solid $gray1;
+            border-bottom: none;
+
+            .top {
+                display: flex;
+                justify-content: space-between;
+                background: $gray6;
+
+                .name {
+                    width: 176px;
+                    cursor: pointer;
+                }
+
+                b {
+                    cursor: pointer;
+                }
+
+                i:hover {
+                    color: $orange1;
+                    cursor: default;
+                }
+            }
+
+            .messages {
+                height: 300px;
+                overflow: auto;
+                border-bottom: 2px solid $gray1;
+
+                .message {
+                    padding: 5px;
+                    margin: 2px;
+                    border-radius: 5px;
+                    clear: both;
+                }
+
+                .me {
+                    background: $orange1;
+                    color: $gray6;
+                    float: right;
+                }
+
+                .other {
+                    background: $gray4;
+                    float: left;
+                    color: $gray1;
+                }
+            }
+
+            .messageInput {
+                height: 39px;
+                border: none;
+                width: 100%;
+            }
         }
-      }
     }
-    &:hover {
-      #list {
-        display: block;
-      }
-    }
-  }
-  #channels {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: flex-end;
-    position: fixed;
-    bottom: 0;
-    right: 220px;
-    .channel {
-      width: 200px;
-      flex-shrink: 0;
-      margin-right: 18px;
-      outline: 2px solid $gray1;
-      border-bottom: none;
-      .top {
-        display: flex;
-        justify-content: space-between;
-        background: $gray6;
-        b, i {
-          cursor: pointer;
-        }
-      }
-      .messages {
-        height: 300px;
-        overflow: auto;
-        border-bottom: 2px solid $gray1;
-        .message {
-          padding: 5px;
-          margin: 2px;
-          border-radius: 5px;
-          clear: both;
-        }
-        .me {
-          background: $orange1;
-          color: $gray6;
-          float: right;
-        }
-        .other {
-          background: $gray4;
-          float: left;
-          color: $gray1;
-        }
-      }
-      .messageInput {
-        height: 39px;
-        border: none;
-        width: 100%;
-      }
-    }
-  }
 }
