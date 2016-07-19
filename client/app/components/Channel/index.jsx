@@ -21,7 +21,7 @@ class Channel extends Component {
     this.setState({ expanded: !this.state.expanded })
   }
   render() {
-    const { currentUser, closeChannel, uniqueName, name, messages } = this.props
+    const { currentUser, sendMessage, closeChannel, uniqueName, name, messages } = this.props
     const { expanded } = this.state
     const className = author => currentUser.name === author ? 'me' : 'other'
     return (
@@ -66,5 +66,5 @@ const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
 
 export default connect(
   mapStateToProps,
-  { closeChannel, toggleExpand }
+  { closeChannel, toggleExpand, sendMessage }
 )(Channel)
