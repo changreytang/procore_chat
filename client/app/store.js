@@ -4,7 +4,9 @@ import { createStore, applyMiddleware } from 'redux'
 import reducer from './reducers'
 
 // Logger middleware
-const logger = createLogger()
+const logger = createLogger({
+  collapsed: () => true,
+})
 
 // The initial state of the app
 const initialState = {

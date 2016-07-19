@@ -17,10 +17,13 @@ export const setupMessagingClient = token => (dispatch, getState) => {
 
   // Update the online indicators of the other users on changes
   messagingClient.on('userInfoUpdated', ({ online, identity }) => {
-    if (online) {
-      dispatch({ type: 'USER_ONLINE', identity })
-    } else {
-      dispatch({ type: 'USER_OFFLINE', identity })
+    const user = getState().users.find(user => user.name === identity)
+    if (user) {
+      const wasOnline = !!user.online
+      const currentlyOnline = !!online
+      if (currentlyOnline != wasOnline) {
+        dispatch({ type: 'UPDATE_STATUS', identity, online: currentlyOnline })
+      }
     }
   })
 }
