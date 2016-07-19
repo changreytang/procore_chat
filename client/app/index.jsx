@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactOnRails from 'react-on-rails'
-import { render } from 'react-dom'
 import { Provider } from 'react-redux'
 import UserList from 'components/UserList'
 import ChannelList from 'components/ChannelList'
@@ -22,4 +21,5 @@ const ChatAppClient = ({ token, users, currentUser }) => {
   )
 }
 
+// Tell Rails about the React app
 ReactOnRails.register({ ChatAppClient })
