@@ -13,7 +13,7 @@
     <body>
         <% if logged_in? %>
             <%= "Welcome, #{current_user.name}!" %>
-            <%= link_to "Log out", sessions_path, method: "delete", class: "btn btn-primary" %></br></br></br>
+            <%= link_to "Log out", sessions_path, method: "delete", class: "btn btn-warning pull-right" %></br></br></br>
 <% end %>
 <% flash.each do |message_type, message| %>
     <div class="alert alert-<%= message_type %>"><%= message %></div>

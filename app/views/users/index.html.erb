@@ -1,4 +1,8 @@
-<%= link_to "Chat", chat_path %>
-<% @users.each do |user| %>
-	<%= user.name %>, <%= user.email %></br>
+<div class="user-list">
+    <%= button_to "Chat", chat_path, { :class => "btn btn-primary"} %>
+    <br>
+    <h3>Users</h3>
+    <% @users.each do |user| %>
+        <%= user.name %>, <%= user.email %></br>
 <% end %>
+</div>
