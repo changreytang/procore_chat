@@ -1,4 +1,3 @@
-import store from './store'
 import { generateUniqueChannelName } from './utils'
 
 export const setMessagingClient = token => {
@@ -10,29 +9,34 @@ export const setMessagingClient = token => {
 	}
 }
 
-export const activateChannel = ( id, name ) => dispatch => {
+export const activateChannel = ( id, name ) => (dispatch, getState) => {
 
-	const uniqueName = generateUniqueChannelName(store.getState().currentUser.id, id)
+	const uniqueName = generateUniqueChannelName(getState().currentUser.id, id)
 
-	const setupChannel = ( channel ) => {
+	const setupChannel = (channel) => {
 		channel.join()
-		channel.getMessages().then(messages =>
-			dispatch(getMessages(uniqueName, messages)))
-		channel.on('messageAdded', message =>
-			dispatch(messageAdded(uniqueName, message)))
-		dispatch({ type: 'ACTIVATE_CHANNEL', channel, name, })
+		channel.getMessages().then(messages => dispatch({
+      type: 'GET_MESSAGES',
+      uniqueName,
+      messages,
+    }))
+		channel.on('messageAdded', message => dispatch({
+      type: 'MESSAGE_ADDED',
+      uniqueName,
+      message,
+    }))
+		dispatch({ type: 'ACTIVATE_CHANNEL', channel, name })
 	}
 
-	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
+	getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => {
 			if(!channel) {
-				store.getState().messagingClient.createChannel({
-					uniqueName,
-					friendlyName: `${uniqueName} (friendly)`,
-				}).then(setupChannel)
+        const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
+				getState().messagingClient.createChannel(newChannel).then(setupChannel)
 			} else {
-				if(!(store.getState().channels.map(channel => channel.uniqueName).includes(uniqueName)))
-					setupChannel(channel)
+        const uniqueNames = getState().channels.map(c => c.uniqueName)
+        const isChannelActive = uniqueNames.includes(uniqueName)
+				if(!isChannelActive) setupChannel(channel)
 			}
 		})
 }
@@ -42,29 +46,16 @@ export const closeChannel = uniqueName => ({
 	uniqueName,
 })
 
-export const messageAdded = (uniqueName, message) => ({
-	type: 'MESSAGE_ADDED',
-	uniqueName,
-	message,
-})
-
-export const getMessages = (uniqueName, messages) => ({
-	type: 'GET_MESSAGES',
-	uniqueName,
-	messages,
-})
-
-export const sendMessage = (uniqueName, message) => {
-	store.getState().messagingClient.getChannelByUniqueName(uniqueName)
+export const sendMessage = (uniqueName, message) => (dispatch, getState) => {
+	getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
+    .then(() => dispatch({ type: 'SEND_MESSAGE', message }))
 }
 
-export const getUsers = users => {
-	return {
-	type: 'GET_USERS',
-	users,
-}
-}
+export const getUsers = users => ({
+    type: 'GET_USERS',
+    users,
+})
 
 export const getCurrentUser = currentUser => ({
 	type: 'GET_CURRENT_USER',

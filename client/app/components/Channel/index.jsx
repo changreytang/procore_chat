@@ -7,30 +7,36 @@ class Channel extends Component {
     super(props)
     this.state = { expanded: true }
     this.toggleExpand = this.toggleExpand.bind(this)
+    this.handleClose = this.handleClose.bind(this)
   }
   componentDidUpdate() {
     if (this.state.expanded) {
       this.refs.messages.scrollTop = this.refs.messages.scrollHeight
     }
   }
+  handleClose() {
+    this.props.closeChannel(this.props.uniqueName)
+  }
   toggleExpand() {
     this.setState({ expanded: !this.state.expanded })
   }
   render() {
-    const { currentUser } = this.props
+    const { currentUser, closeChannel, uniqueName, name, messages } = this.props
+    const { expanded } = this.state
+    const className = author => currentUser.name === author ? 'me' : 'other'
     return (
       <div className="channel border">
         <div className="top">
-          <b onClick={() => this.toggleExpand()}>{this.props.name}</b>
-          <i className="material-icons" onClick={() => this.props.closeChannel(this.props.uniqueName)}>close</i>
+          <b onClick={this.toggleExpand}>{name}</b>
+          <i className="material-icons" onClick={this.handleClose}>close</i>
         </div>
         {
-          this.state.expanded ?
+          expanded ?
             <div>
               <div ref="messages" className="messages">
-                {this.props.messages.map(({ index, body, author }) =>
+                {messages.map(({ index, body, author }) =>
                   <div key={index}>
-                    <div className={`message ${currentUser.name === author ? 'me' : 'other'}`}>
+                    <div className={`message ${className(author)}`}>
                       <span>{body}</span>
                     </div>
                   </div>
@@ -41,7 +47,7 @@ class Channel extends Component {
                 className="messageInput"
                 onKeyPress={({ target, key }) => {
                   if (key === 'Enter') {
-                    sendMessage(this.props.uniqueName, target.value)
+                    sendMessage(uniqueName, target.value)
                     target.value = ''
                   }
                 }}

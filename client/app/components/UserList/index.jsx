@@ -7,7 +7,7 @@ const UserList = ({ users, activateChannel }) =>
 		<ul>
 			{users.map(({ id, name }) =>
 				<li key={id} onClick={() => activateChannel(id, name)}>
-				{name}
+          {name}
 				</li>
 			)}
 		</ul>
