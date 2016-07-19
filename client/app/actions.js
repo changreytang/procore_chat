@@ -3,17 +3,20 @@ import { generateUniqueChannelName } from './utils'
 export const setMessagingClient = token => {
   const accessManager = new Twilio.AccessManager(token)
   const messagingClient = new Twilio.IPMessaging.Client(accessManager)
-	return {
-		type: 'SET_MESSAGING_CLIENT',
-		messagingClient,
-	}
+  messagingClient.on('userInfoUpdated', user => {
+    if (user.online) console.log("ONLINE!", user)
+  })
+  return {
+    type: 'SET_MESSAGING_CLIENT',
+    messagingClient,
+  }
 }
 
 export const activateChannel = ( id, name ) => (dispatch, getState) => {
 
-	const uniqueName = generateUniqueChannelName(getState().currentUser.id, id)
+  const uniqueName = generateUniqueChannelName(getState().currentUser.id, id)
 
-	const setupChannel = (channel) => {
+  const setupChannel = (channel) => {
 		channel.join()
 		channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
@@ -32,7 +35,9 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 		.then(channel => {
 			if(!channel) {
         const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
-				getState().messagingClient.createChannel(newChannel).then(setupChannel)
+				getState().messagingClient
+          .createChannel(newChannel)
+          .then(setupChannel)
 			} else {
         const uniqueNames = getState().channels.map(c => c.uniqueName)
         const isChannelActive = uniqueNames.includes(uniqueName)

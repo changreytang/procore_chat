@@ -4,33 +4,60 @@ $bar-height: 30px;
 
 body {
     font-family: $main-font;
-    margin: 0;
     color: $gray1;
 }
 
-.chat {
+#chat {
+  #channelList {
+    outline: 2px solid $gray1;
     position: fixed;
-    width: 100%;
     bottom: 0;
+    right: 20px;
+    border-bottom: none;
+    width: 200px;
+    b {
+      padding: 10px;
+      height: 30px;
+      line-height: 30px;
+    }
+    #list {
+      display: none;
+      div {
+        cursor: pointer;
+        padding: 10px;
+        &:hover {
+          background: $orange1;
+          color: $gray6;
+        }
+      }
+    }
+    &:hover {
+      #list {
+        display: block;
+      }
+    }
+  }
+  #channels {
     display: flex;
     flex-direction: row-reverse;
     align-items: flex-end;
-
+    position: fixed;
+    bottom: 0;
+    right: 220px;
     .channel {
       width: 200px;
+      flex-shrink: 0;
       margin-right: 18px;
       outline: 2px solid $gray1;
       border-bottom: none;
-
       .top {
         display: flex;
         justify-content: space-between;
         background: $gray6;
-        b {
+        b, i {
           cursor: pointer;
         }
       }
-
       .messages {
         height: 300px;
         overflow: auto;
@@ -52,40 +79,11 @@ body {
           color: $gray1;
         }
       }
-
       .messageInput {
         height: 39px;
         border: none;
         width: 100%;
       }
     }
-
-    .channelList {
-        outline: 2px solid $gray1;
-        border-bottom: none;
-        width: 200px;
-        margin-right: 20px;
-        h4 {
-          margin: 0;
-          padding: 10px;
-        }
-        ul {
-          display: none;
-          list-style: none;
-          padding: 0;
-          li {
-            cursor: pointer;
-            padding: 10px;
-            &:hover {
-              background: $orange1;
-              color: $gray6;
-            }
-          }
-        }
-        &:hover {
-          ul {
-            display: block;
-          }
-        }
-    }
+  }
 }

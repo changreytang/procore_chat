@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sendMessage, closeChannel, toggleExpand } from '../../actions'
+import { sendMessage, closeChannel, toggleExpand } from 'actions'
 
 class Channel extends Component {
   constructor(props) {
@@ -25,7 +25,7 @@ class Channel extends Component {
     const { expanded } = this.state
     const className = author => currentUser.name === author ? 'me' : 'other'
     return (
-      <div className="channel border">
+      <div className="channel">
         <div className="top">
           <b onClick={this.toggleExpand}>{name}</b>
           <i className="material-icons" onClick={this.handleClose}>close</i>

@@ -1,21 +1,25 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { activateChannel } from '../../actions'
+import { activateChannel } from 'actions'
 
 const UserList = ({ users, activateChannel }) =>
-	<div className="channelList border">
-		<ul>
+  <div id="channelList">
+		<div id="list">
 			{users.map(({ id, name }) =>
-				<li key={id} onClick={() => activateChannel(id, name)}>
+				<div key={id} onClick={() => activateChannel(id, name)}>
           {name}
-				</li>
+				</div>
 			)}
-		</ul>
-		<h4>Users Online ({users.length})</h4>
+		</div>
+		<b>Users Online ({users.length})</b>
 	</div>
 
-export
-default connect(
+UserList.propTypes = {
+  users:           PropTypes.array.isRequired,
+  activateChannel: PropTypes.func.isRequired,
+}
+
+export default connect(
   state => state,
   { activateChannel }
 )(UserList)

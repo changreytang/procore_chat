@@ -15,6 +15,10 @@ config.entry.vendor.unshift(
 
 config.entry.vendor.push('jquery-ujs');
 
+config.resolve.root = [
+  path.resolve('./app')
+]
+
 config.module.loaders.push(
   {
     test: /\.jsx?$/,
