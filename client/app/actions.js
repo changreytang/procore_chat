@@ -1,15 +1,21 @@
 import { generateUniqueChannelName } from './utils'
 
+// The initial setup of the messaging client, along with some event listeners
 export const setupMessagingClient = token => (dispatch, getState) => {
   const accessManager = new Twilio.AccessManager(token)
   const messagingClient = new Twilio.IPMessaging.Client(accessManager)
+  dispatch({ type: 'SET_MESSAGING_CLIENT', messagingClient })
 
+  // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
-    const id = getState().users.find(user => user.name === message.author).id
-    dispatch(activateChannel(id, message.author))
+    const ownMessage = message.author === getState().currentUser.name
+    if (!ownMessage) {
+      const id = getState().users.find(user => user.name === message.author).id
+      dispatch(activateChannel(id, message.author))
+    }
   })
 
-  dispatch({ type: 'SET_MESSAGING_CLIENT', messagingClient })
+  // Update the online indicators of the other users on changes
   messagingClient.on('userInfoUpdated', ({ online, identity }) => {
     if (online) {
       dispatch({ type: 'USER_ONLINE', identity })
@@ -19,11 +25,13 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   })
 }
 
+// open up a new chat box
 export const activateChannel = ( id, name ) => (dispatch, getState) => {
-
+  // construct the unique name for the channel
   const uniqueName = generateUniqueChannelName(getState().currentUser.id, id)
 
-  const setupChannel = (channel) => {
+  // This function joins a given channel and sets up event listeners
+  const setupChannel = channel => {
 		channel.join()
 		channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
@@ -38,6 +46,7 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 		dispatch({ type: 'ACTIVATE_CHANNEL', channel, name })
 	}
 
+  // If a channel exists, join it. Otherwise create it
 	getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => {
 			if(!channel) {
@@ -53,22 +62,26 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 		})
 }
 
+// close an open chat box
 export const closeChannel = uniqueName => ({
 	type: 'CLOSE_CHANNEL',
 	uniqueName,
 })
 
+// Send a new message
 export const sendMessage = (uniqueName, message) => (dispatch, getState) => {
 	getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
     .then(() => dispatch({ type: 'SEND_MESSAGE', message }))
 }
 
+// Set the user list
 export const getUsers = users => ({
     type: 'GET_USERS',
     users,
 })
 
+// Set the current user
 export const getCurrentUser = currentUser => ({
 	type: 'GET_CURRENT_USER',
 	currentUser,

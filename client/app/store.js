@@ -3,8 +3,10 @@ import createLogger from 'redux-logger'
 import { createStore, applyMiddleware } from 'redux'
 import reducer from './reducers'
 
+// Logger middleware
 const logger = createLogger()
 
+// The initial state of the app
 const initialState = {
 	channels: [],
 	users: [],
@@ -12,6 +14,7 @@ const initialState = {
   messagingClient: {},
 }
 
+// Create the store
 const store = createStore(
   reducer,
   initialState,
