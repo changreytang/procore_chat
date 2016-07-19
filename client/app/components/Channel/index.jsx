@@ -7,12 +7,12 @@ class Channel extends Component {
     super(props)
     this.state = { expanded: true }
     this.propTypes = {
-        currentUser: PropTypes.object.isRequired,
-        sendMessage: PropTypes.func.isRequired,
-        closeChannel: PropTypes.func.isRequired,
-        uniqueName: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        messages: PropTypes.array.isRequired,
+      currentUser:  PropTypes.object.isRequired,
+      sendMessage:  PropTypes.func.isRequired,
+      closeChannel: PropTypes.func.isRequired,
+      uniqueName:   PropTypes.string.isRequired,
+      name:         PropTypes.string.isRequired,
+      messages:      PropTypes.array.isRequired,
     },
     this.toggleExpand = this.toggleExpand.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -29,7 +29,8 @@ class Channel extends Component {
     this.setState({ expanded: !this.state.expanded })
   }
   render() {
-    const { currentUser, sendMessage, closeChannel, uniqueName, name, messages } = this.props
+    const { currentUser, sendMessage, closeChannel, uniqueName, name,
+            messages } = this.props
     const { expanded } = this.state
     const className = author => currentUser.name === author ? 'me' : 'other'
     return (
