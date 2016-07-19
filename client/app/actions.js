@@ -1,15 +1,22 @@
 import { generateUniqueChannelName } from './utils'
 
-export const setMessagingClient = token => {
+export const setupMessagingClient = token => (dispatch, getState) => {
   const accessManager = new Twilio.AccessManager(token)
   const messagingClient = new Twilio.IPMessaging.Client(accessManager)
-  messagingClient.on('userInfoUpdated', user => {
-    if (user.online) console.log("ONLINE!", user)
+
+  messagingClient.on('messageAdded', message => {
+    const id = getState().users.find(user => user.name === message.author).id
+    dispatch(activateChannel(id, message.author))
   })
-  return {
-    type: 'SET_MESSAGING_CLIENT',
-    messagingClient,
-  }
+
+  dispatch({ type: 'SET_MESSAGING_CLIENT', messagingClient })
+  messagingClient.on('userInfoUpdated', ({ online, identity }) => {
+    if (online) {
+      dispatch({ type: 'USER_ONLINE', identity })
+    } else {
+      dispatch({ type: 'USER_OFFLINE', identity })
+    }
+  })
 }
 
 export const activateChannel = ( id, name ) => (dispatch, getState) => {

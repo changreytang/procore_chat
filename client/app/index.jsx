@@ -5,13 +5,13 @@ import { Provider } from 'react-redux'
 import UserList from 'components/UserList'
 import ChannelList from 'components/ChannelList'
 import store from 'store'
-import { getUsers, getCurrentUser, setMessagingClient } from 'actions'
+import { getUsers, getCurrentUser, setupMessagingClient } from 'actions'
 require('stylesheets/index.scss')
 
 const ChatAppClient = ({ token, users, currentUser }) => {
-  store.dispatch(setMessagingClient(token))
   store.dispatch(getUsers(users))
   store.dispatch(getCurrentUser(currentUser))
+  store.dispatch(setupMessagingClient(token))
   return (
     <Provider store={store}>
       <div id="chat">

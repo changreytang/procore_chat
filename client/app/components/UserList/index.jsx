@@ -5,9 +5,10 @@ import { activateChannel } from 'actions'
 const UserList = ({ users, activateChannel }) =>
   <div id="channelList">
 		<div id="list">
-			{users.map(({ id, name }) =>
-				<div key={id} onClick={() => activateChannel(id, name)}>
-          {name}
+			{users.map(({ id, name, online }) =>
+				<div key={id} onClick={() => activateChannel(id, name)} className="user">
+          <div>{name}</div>
+          <div className={online ? 'on' : 'off'} />
 				</div>
 			)}
 		</div>

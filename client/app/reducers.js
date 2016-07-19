@@ -1,9 +1,9 @@
 import { generateUniqueChannelName } from './utils'
 
 export default (state, action) => {
-	let channels
+	let channels, _users
 	const { type, currentUser, users, uniqueName, name, channel,
-		      message, messages, messagingClient } = action
+		      message, messages, messagingClient, identity } = action
 
 	switch (type) {
 		case 'SET_MESSAGING_CLIENT':
@@ -18,6 +18,24 @@ export default (state, action) => {
 		case 'CLOSE_CHANNEL':
 			channels = state.channels.filter(c => c.uniqueName != uniqueName)
 			return { ...state, channels }
+    case 'USER_ONLINE':
+      _users = state.users.map(user => {
+        if (user.name === identity) {
+          return { ...user, online: true }
+        } else {
+          return user
+        }
+      })
+      return { ...state, users: _users }
+    case 'USER_OFFLINE':
+      _users = state.users.map(user => {
+        if (user.name === identity) {
+          return { ...user, online: false }
+        } else {
+          return user
+        }
+      })
+      return { ...state, users: _users }
 		case 'GET_MESSAGES':
 			channels = state.channels.map(channel => {
 				if (channel.uniqueName === uniqueName) {
