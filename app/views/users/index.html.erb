@@ -1,5 +1,5 @@
 <div class="user-list">
-    <%= button_to "Chat", chat_path, { :class => "btn btn-primary"} %>
+    <%= button_to "Chat", chat_path, :class => "btn btn-primary", method: :get %>
     <br>
     <h3>Users</h3>
     <% @users.each do |user| %>
