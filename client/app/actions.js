@@ -38,7 +38,6 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
   // This function joins a given channel and sets up event listeners
   const setupChannel = channel => {
     channel.join() // TODO this is called every time a channel is opened, which is redundant
-    channel.add(id.toString()) // TODO this too, fix it sometime
 		channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
       uniqueName,
@@ -57,10 +56,10 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 		.then(channel => {
 			if(!channel) {
         const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
-				getState().messagingClient
-          .createChannel(newChannel).then(channel => {
-            setupChannel(channel)
-          })
+        getState().messagingClient.createChannel(newChannel).then(channel => {
+          channel.add(id.toString())
+          setupChannel(channel)
+        })
 			} else {
         const uniqueNames = getState().channels.map(c => c.uniqueName)
         const isChannelActive = uniqueNames.includes(uniqueName)
