@@ -10,7 +10,8 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   messagingClient.on('messageAdded', message => {
     const ownMessage = message.author === getState().currentUser.id.toString()
     if (!ownMessage) {
-      const authorUser = getState().users.find(user => user.id.toString() === message.author)
+      const authorUser = getState().users
+        .find(user => user.id.toString() === message.author)
       const { id, name } = authorUser
       dispatch(activateChannel(id, name))
     }
@@ -18,7 +19,7 @@ export const setupMessagingClient = token => (dispatch, getState) => {
 
   // Update the online indicators of the other users on changes
   messagingClient.on('userInfoUpdated', ({ online, identity }) => {
-    const user = getState().users.find(user => user.id === identity)
+    const user = getState().users.find(user => user.id.toString() === identity)
     if (user) {
       const wasOnline = !!user.online
       const currentlyOnline = !!online
@@ -55,8 +56,7 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 			if(!channel) {
         const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
 				getState().messagingClient
-          .createChannel(newChannel)
-          .then(channel => {
+          .createChannel(newChannel) .then(channel => {
             channel.join()
             channel.add(id.toString())
             setupChannel(channel)
@@ -64,7 +64,7 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 			} else {
         const uniqueNames = getState().channels.map(c => c.uniqueName)
         const isChannelActive = uniqueNames.includes(uniqueName)
-				if(!isChannelActive) setupChannel(channel)
+				if (!isChannelActive) setupChannel(channel)
 			}
 		})
 }

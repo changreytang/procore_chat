@@ -27,7 +27,7 @@ export default (state, action) => {
 			return {...state, userListSearchQuery: input}
 	    case 'UPDATE_STATUS':
 	      users = state.users.map(user => {
-	        if (user.name === identity) {
+	        if (user.id.toString() === identity) {
 	          return { ...user, online }
 	        } else {
 	          return user
