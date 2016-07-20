@@ -3,10 +3,11 @@
 $bar-height: 30px;
 
 body {
-  font-family: $main-font;
-  color: $gray1;
-  background: url('bg.png');
-  background-size: cover;
+    font-family: $main-font;
+    color: $gray1;
+
+    // background: url('bg.png');
+    // background-size: cover;
 }
 
 #chat {
