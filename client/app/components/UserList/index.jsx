@@ -20,14 +20,24 @@ class UserList extends Component {
         {expanded ?
           <div>
             <div id="list">
-              {users.map(({ id, name, online }) =>
+              {users.filter(user => user.online).map(({ id, name}) =>
                 <div
                   key={id}
                   onClick={() => activateChannel(id, name)}
                   className="user"
                 >
                   <div>{name}</div>
-                  <div className={online ? 'on' : 'off'} />
+                  <div className="on" />
+                </div>
+              )}
+              {users.filter(user => !user.online).map(({ id, name}) =>
+                <div
+                  key={id}
+                  onClick={() => activateChannel(id, name)}
+                  className="user"
+                >
+                  <div>{name}</div>
+                  <div className="off"/>
                 </div>
               )}
             </div>
