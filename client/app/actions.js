@@ -8,16 +8,17 @@ export const setupMessagingClient = token => (dispatch, getState) => {
 
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
-    const ownMessage = message.author === getState().currentUser.name
+    const ownMessage = message.author === getState().currentUser.id.toString()
     if (!ownMessage) {
-      const id = getState().users.find(user => user.name === message.author).id
-      dispatch(activateChannel(id, message.author))
+      const authorUser = getState().users.find(user => user.id.toString() === message.author)
+      const { id, name } = authorUser
+      dispatch(activateChannel(id, name))
     }
   })
 
   // Update the online indicators of the other users on changes
   messagingClient.on('userInfoUpdated', ({ online, identity }) => {
-    const user = getState().users.find(user => user.name === identity)
+    const user = getState().users.find(user => user.id === identity)
     if (user) {
       const wasOnline = !!user.online
       const currentlyOnline = !!online
@@ -57,7 +58,7 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
           .createChannel(newChannel)
           .then(channel => {
             channel.join()
-            channel.add(name)
+            channel.add(id.toString())
             setupChannel(channel)
           })
 			} else {
