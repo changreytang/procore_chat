@@ -30,6 +30,10 @@ config.module.loaders.push(
     loaders: ['style', 'css', 'sass'],
   },
   {
+    test: /\.png$/,
+    loaders: ['file'],
+  },
+  {
     test: /\.css$/,
     loaders: ['style', 'css'],
   },
