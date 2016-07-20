@@ -7,10 +7,19 @@ class UserList extends Component {
     super(props) 
     this.state = { expanded: false }
     this.toggleExpand = this.toggleExpand.bind(this)
+    this.handleSearch = this.handleSearch.bind(this)
   }
   toggleExpand() {
     const expanded = !this.state.expanded
     this.setState({ expanded })
+  }
+  handleSearch(e) {
+    this.props.searchUsers(e.target.value)
+  }
+  handleActivate(id, name) {
+    return function () {
+      this.props.activateChannel(id, name)
+    }
   }
   render() {
     const { users, activateChannel, numOnline, searchUsers } = this.props 
@@ -43,13 +52,7 @@ class UserList extends Component {
             </div>
             <div id="userSearchArea">
               <i className="fa fa-search"></i>
-              <input
-                type="text"
-                className="messageInput"
-                onChange={({ target }) => {
-                  searchUsers(target.value)
-                }}
-              />
+              <input onChange={this.handleSearch} />
             </div>
           </div> : null
         } 
