@@ -107,6 +107,8 @@ body {
         .message {
           padding: 5px;
           margin: 2px;
+          max-width: 80%;
+          word-wrap: break-word;
           border-radius: 5px;
           clear: both;
         }
