@@ -45,9 +45,8 @@ class Channel extends Component {
                   </div>
                 )}
               </div>
-              <input
-                type="text"
-                className="messageInput"
+              <textarea id="userInput"
+                className="messageInput" onKeyUp={() => auto_grow()}
                 onKeyPress={({ target, key }) => {
                   if (key === 'Enter') {
                     sendMessage(uniqueName, target.value)
@@ -61,6 +60,13 @@ class Channel extends Component {
     )
   }
 }
+
+
+function auto_grow() {
+    document.getElementById("userInput").style.height = "5px";
+    document.getElementById("userInput").style.height = (document.getElementById("userInput").scrollHeight)+"px";
+}
+
 
 Channel.propTypes = {
   currentUser:  PropTypes.object.isRequired,

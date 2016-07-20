@@ -6,6 +6,8 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   const messagingClient = new Twilio.IPMessaging.Client(accessManager)
   dispatch({ type: 'SET_MESSAGING_CLIENT', messagingClient })
 
+  messagingClient.getChannelByUniqueName('general').then(channel => channel.join())
+
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
     const ownMessage = message.author === getState().currentUser.id.toString()
