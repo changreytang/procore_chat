@@ -31,13 +31,16 @@ class UserList extends Component {
                 </div>
               )}
             </div>
-            <input
-              type="text"
-              className="messageInput"
-              onChange={({ target }) => {
-                searchUsers(target.value)
-              }}
-            />
+            <div id="userSearchArea">
+              <i className="fa fa-search"></i>
+              <input
+                type="text"
+                className="messageInput"
+                onChange={({ target }) => {
+                  searchUsers(target.value)
+                }}
+              />
+            </div>
           </div> : null
         } 
         <div id="listLabel" onClick={ this.toggleExpand }>

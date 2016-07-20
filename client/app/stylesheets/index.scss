@@ -3,7 +3,7 @@
 body {
   font-family: $main-font;
   color: $gray1;
-  background-image: url('/assets/bg.png');
+  // background-image: url('/assets/bg.png');
   background-size: cover;
 }
 
@@ -24,6 +24,17 @@ body {
       height: 30px;
       i {
         margin: 0px 5px;
+      }
+    }
+    #userSearchArea {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      i {
+        margin: 0px 5px;
+      }
+      input {
+        flex-grow: 3;
       }
     }
     #list {
