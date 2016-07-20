@@ -14,7 +14,11 @@ export default (state, action) => {
       users = action.users
 			return { ...state, users }
 		case 'ACTIVATE_CHANNEL':
-			channels = state.channels.concat({...channel, name})
+			if((window.innerWidth - 450) > document.getElementById('channels').offsetWidth)
+				channels = state.channels.concat({...channel, name})
+			else {
+				channels = state.channels.slice(0, state.channels.length - 1).concat({...channel, name})
+			}
 			return { ...state, channels }
 		case 'CLOSE_CHANNEL':
 			channels = state.channels.filter(c => c.uniqueName != uniqueName)
