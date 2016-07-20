@@ -18,10 +18,9 @@ body {
     right: 20px;
     border-bottom: none;
     width: 200px;
-    b {
-      padding: 10px;
+    #listLabel {
+      display: flex;
       height: 30px;
-      line-height: 30px;
     }
     #list {
       display: block;
@@ -76,9 +75,13 @@ body {
           cursor: pointer;
           padding: 5px 7px;
         }
-        i:hover {
-          color: $orange1;
-          cursor: default;
+        i {
+          padding: 5px;
+          font-size: 16px;
+          &:hover {
+            color: $orange1;
+            cursor: pointer;
+          }
         }
       }
       .messages {

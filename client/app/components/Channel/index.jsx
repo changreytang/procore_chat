@@ -5,7 +5,7 @@ import { sendMessage, closeChannel, toggleExpand } from 'actions'
 class Channel extends Component {
   constructor(props) {
     super(props)
-    this.state = { expanded: true },
+    this.state = { expanded: true }
     this.toggleExpand = this.toggleExpand.bind(this)
     this.handleClose = this.handleClose.bind(this)
   }
@@ -15,10 +15,12 @@ class Channel extends Component {
     }
   }
   handleClose() {
-    this.props.closeChannel(this.props.uniqueName)
+    const { closeChannel, uniqueName } = this.props
+    closeChannel(uniqueName)
   }
   toggleExpand() {
-    this.setState({ expanded: !this.state.expanded })
+    const expanded = !this.state.expanded
+    this.setState({ expanded })
   }
   render() {
     const { currentUser, sendMessage, closeChannel, uniqueName, name,
@@ -29,7 +31,7 @@ class Channel extends Component {
       <div className="channel">
         <div className="top">
           <div className="name" onClick={this.toggleExpand}>{name}</div>
-          <i className="material-icons" onClick={this.handleClose}>close</i>
+          <i className="fa fa-times" onClick={this.handleClose}></i>
         </div>
         {
           expanded ?
