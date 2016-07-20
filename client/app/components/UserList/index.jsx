@@ -9,40 +9,40 @@ class UserList extends Component {
     this.toggleExpand = this.toggleExpand.bind(this)
   }
   toggleExpand() {
-    this.setState({ expanded: !this.state.expanded })
+    const expanded = !this.state.expanded
+    this.setState({ expanded })
   }
   render() {
-    const { users, activateChannel, searchUsers } = this.props 
+    const { users, activateChannel, numOnline, searchUsers } = this.props 
     const { expanded } = this.state 
     return (
       <div id="channelList">
-        {
-          expanded ?
-            <div>
-              <div id="list">
-                {users.map(({ id, name, online }) =>
-                  <div
-                    key={id}
-                    onClick={() => activateChannel(id, name)}
-                    className="user"
-                  >
-                    <div>{name}</div>
-                    <div className={online ? 'on' : 'off'} />
-                  </div>
-                )}
-              </div>
-              <input
-                type="text"
-                className="messageInput"
-                onChange={({ target }) => {
-                  searchUsers(target.value)
-                }}
-              />
-            </div> : null
+        {expanded ?
+          <div>
+            <div id="list">
+              {users.map(({ id, name, online }) =>
+                <div
+                  key={id}
+                  onClick={() => activateChannel(id, name)}
+                  className="user"
+                >
+                  <div>{name}</div>
+                  <div className={online ? 'on' : 'off'} />
+                </div>
+              )}
+            </div>
+            <input
+              type="text"
+              className="messageInput"
+              onChange={({ target }) => {
+                searchUsers(target.value)
+              }}
+            />
+          </div> : null
         } 
         <div id="listLabel" onClick={ this.toggleExpand }>
           <i className="fa fa-comments"></i>
-          <b>Users Online ({users.length})</b>
+          <b>Chat ({numOnline} Online)</b>
         </div>
       </div>
     )
@@ -58,7 +58,8 @@ UserList.propTypes = {
 const mapStateToProps = (state) => {
   const reg = new RegExp('^' + state.userListSearchQuery)
   const users = state.users.filter(user => reg.test(user.name))
-  return { users }
+  const numOnline = state.users.filter(user => user.online).length
+  return { users, numOnline }
 }
 
 export default connect(
