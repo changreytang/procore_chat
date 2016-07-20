@@ -6,6 +6,27 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   const messagingClient = new Twilio.IPMessaging.Client(accessManager)
   dispatch({ type: 'SET_MESSAGING_CLIENT', messagingClient })
 
+  messagingClient.getChannelByUniqueName('general')
+  .then(function(channel){
+    generalChannel = channel; 
+    if(!generalChannel) {
+      messagingClient.createChannel({
+        uniqueName: 'general',
+        friendlyName: 'General Chat Channel'
+      }).then(function(channel){
+          console.log('Created general channel');
+          console.log(channel);
+          generalChannel = channel;
+          setupChannel();
+      })
+    } else {
+      console.log('Found general channel');
+      console.log(generalChannel);
+      setupChannel();
+    }
+  });
+
+
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
     const ownMessage = message.author === getState().currentUser.name
