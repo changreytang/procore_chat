@@ -56,7 +56,7 @@ UserList.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  const reg = new RegExp('^' + state.userListSearchQuery)
+  const reg = new RegExp(state.userListSearchQuery, 'i')
   const users = state.users.filter(user => reg.test(user.name))
   return { users }
 }
