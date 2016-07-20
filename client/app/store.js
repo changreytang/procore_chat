@@ -14,6 +14,7 @@ const initialState = {
 	users: [],
 	currentUser: {},
   messagingClient: {},
+  userListSearchQuery: '',
 }
 
 // Create the store

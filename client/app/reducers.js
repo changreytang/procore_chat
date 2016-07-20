@@ -2,7 +2,7 @@ import { generateUniqueChannelName } from './utils'
 
 export default (state, action) => {
 	let channels, users
-	const { type, currentUser, uniqueName, name, channel, online,
+	const { input, type, currentUser, uniqueName, name, channel, online,
 		      message, messages, messagingClient, identity } = action
 
 	switch (type) {
@@ -23,15 +23,17 @@ export default (state, action) => {
 		case 'CLOSE_CHANNEL':
 			channels = state.channels.filter(c => c.uniqueName != uniqueName)
 			return { ...state, channels }
-    case 'UPDATE_STATUS':
-      users = state.users.map(user => {
-        if (user.name === identity) {
-          return { ...user, online }
-        } else {
-          return user
-        }
-      })
-      return { ...state, users }
+		case 'SEARCH_USERS':
+			return {...state, userListSearchQuery: input}
+	    case 'UPDATE_STATUS':
+	      users = state.users.map(user => {
+	        if (user.name === identity) {
+	          return { ...user, online }
+	        } else {
+	          return user
+	        }
+	      })
+	      return { ...state, users }
 		case 'GET_MESSAGES':
 			channels = state.channels.map(channel => {
 				if (channel.uniqueName === uniqueName) {

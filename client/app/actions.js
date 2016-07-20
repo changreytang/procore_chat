@@ -65,6 +65,11 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 		})
 }
 
+export const searchUsers = input => ({
+  type: 'SEARCH_USERS',
+  input,
+})
+
 // close an open chat box
 export const closeChannel = uniqueName => ({
 	type: 'CLOSE_CHANNEL',
