@@ -68,7 +68,7 @@ Channel.propTypes = {
   closeChannel: PropTypes.func.isRequired,
   uniqueName:   PropTypes.string.isRequired,
   name:         PropTypes.string.isRequired,
-  messages:      PropTypes.array.isRequired,
+  messages:     PropTypes.array.isRequired,
 }
 
 const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
