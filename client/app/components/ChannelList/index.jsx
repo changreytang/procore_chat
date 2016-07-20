@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 const ChannelList = ({ channels }) =>
   <div id="channels">
-    {channels.map((channel, i) => <Channel key={i} { ...channel } />)}
+    {channels.map(channel => <Channel key={channel.uniqueName} { ...channel } />)}
   </div>
 
 ChannelList.propTypes = {

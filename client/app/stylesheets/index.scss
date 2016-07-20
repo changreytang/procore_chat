@@ -35,6 +35,7 @@ body {
       }
       input {
         flex-grow: 3;
+        outline: none;
       }
     }
     #list {
@@ -124,6 +125,7 @@ body {
         height: 39px;
         border: none;
         width: 100%;
+        outline: none;
       }
     }
   }

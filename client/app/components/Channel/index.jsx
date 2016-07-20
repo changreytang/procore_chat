@@ -26,7 +26,7 @@ class Channel extends Component {
     const { currentUser, sendMessage, closeChannel, uniqueName, name,
             messages } = this.props
     const { expanded } = this.state
-    const className = author => currentUser.name === author ? 'me' : 'other'
+    const className = author => currentUser.id.toString() === author ? 'me' : 'other'
     return (
       <div className="channel">
         <div className="top">

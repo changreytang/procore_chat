@@ -29,16 +29,18 @@ export const setupMessagingClient = token => (dispatch, getState) => {
 
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
-    const ownMessage = message.author === getState().currentUser.name
+    const ownMessage = message.author === getState().currentUser.id.toString()
     if (!ownMessage) {
-      const id = getState().users.find(user => user.name === message.author).id
-      dispatch(activateChannel(id, message.author))
+      const authorUser = getState().users
+        .find(user => user.id.toString() === message.author)
+      const { id, name } = authorUser
+      dispatch(activateChannel(id, name))
     }
   })
 
   // Update the online indicators of the other users on changes
   messagingClient.on('userInfoUpdated', ({ online, identity }) => {
-    const user = getState().users.find(user => user.name === identity)
+    const user = getState().users.find(user => user.id.toString() === identity)
     if (user) {
       const wasOnline = !!user.online
       const currentlyOnline = !!online
@@ -56,7 +58,7 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 
   // This function joins a given channel and sets up event listeners
   const setupChannel = channel => {
-		channel.join()
+    channel.join() // TODO this is called every time a channel is opened, which is redundant
 		channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
       uniqueName,
@@ -75,13 +77,14 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 		.then(channel => {
 			if(!channel) {
         const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
-				getState().messagingClient
-          .createChannel(newChannel)
-          .then(setupChannel)
+        getState().messagingClient.createChannel(newChannel).then(channel => {
+          channel.add(id.toString())
+          setupChannel(channel)
+        })
 			} else {
         const uniqueNames = getState().channels.map(c => c.uniqueName)
         const isChannelActive = uniqueNames.includes(uniqueName)
-				if(!isChannelActive) setupChannel(channel)
+				if (!isChannelActive) setupChannel(channel)
 			}
 		})
 }
