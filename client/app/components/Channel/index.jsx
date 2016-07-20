@@ -5,7 +5,15 @@ import { sendMessage, closeChannel, toggleExpand } from 'actions'
 class Channel extends Component {
   constructor(props) {
     super(props)
-    this.state = { expanded: true },
+    this.state = { expanded: true }
+    this.propTypes = {
+      currentUser:  PropTypes.object.isRequired,
+      sendMessage:  PropTypes.func.isRequired,
+      closeChannel: PropTypes.func.isRequired,
+      uniqueName:   PropTypes.string.isRequired,
+      name:         PropTypes.string.isRequired,
+      messages:      PropTypes.array.isRequired,
+    },
     this.toggleExpand = this.toggleExpand.bind(this)
     this.handleClose = this.handleClose.bind(this)
   }
@@ -28,7 +36,7 @@ class Channel extends Component {
     return (
       <div className="channel">
         <div className="top">
-          <div className="name" onClick={this.toggleExpand}>{name}</div>
+          <b onClick={this.toggleExpand}>{name}</b>
           <i className="material-icons" onClick={this.handleClose}>close</i>
         </div>
         {
@@ -58,15 +66,6 @@ class Channel extends Component {
       </div>
     )
   }
-}
-
-Channel.propTypes = {
-  currentUser:  PropTypes.object.isRequired,
-  sendMessage:  PropTypes.func.isRequired,
-  closeChannel: PropTypes.func.isRequired,
-  uniqueName:   PropTypes.string.isRequired,
-  name:         PropTypes.string.isRequired,
-  messages:      PropTypes.array.isRequired,
 }
 
 const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
