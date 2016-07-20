@@ -35,7 +35,6 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
 
   // This function joins a given channel and sets up event listeners
   const setupChannel = channel => {
-		channel.join()
 		channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
       uniqueName,
@@ -56,7 +55,11 @@ export const activateChannel = ( id, name ) => (dispatch, getState) => {
         const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
 				getState().messagingClient
           .createChannel(newChannel)
-          .then(setupChannel)
+          .then(channel => {
+            channel.join()
+            channel.add(name)
+            setupChannel(channel)
+          })
 			} else {
         const uniqueNames = getState().channels.map(c => c.uniqueName)
         const isChannelActive = uniqueNames.includes(uniqueName)
