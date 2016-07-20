@@ -28,10 +28,8 @@ class Channel extends Component {
     return (
       <div className="channel">
         <div className="top">
-            <div  className="name" onClick={this.toggleExpand}>
-                <b>{name}</b>
-            </div>
-            <i className="material-icons" onClick={this.handleClose}>close</i>
+          <div className="name" onClick={this.toggleExpand}>{name}</div>
+          <i className="material-icons" onClick={this.handleClose}>close</i>
         </div>
         {
           expanded ?
@@ -69,7 +67,7 @@ Channel.propTypes = {
   uniqueName:   PropTypes.string.isRequired,
   name:         PropTypes.string.isRequired,
   messages:      PropTypes.array.isRequired,
-};
+}
 
 const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
   const channel = channels.find(c => c.uniqueName === uniqueName)

@@ -27,11 +27,7 @@ config.module.loaders.push(
   },
   {
     test: /\.scss$/,
-    loaders: ['style', 'css', 'sass'],
-  },
-  {
-    test: /\.png$/,
-    loaders: ['file'],
+   loaders: ['style', 'css', 'sass'],
   },
   {
     test: /\.css$/,

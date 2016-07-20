@@ -7,6 +7,7 @@ import store from 'store'
 import { getUsers, getCurrentUser, setupMessagingClient } from 'actions'
 require('stylesheets/index.scss')
 
+
 const ChatAppClient = ({ token, users, currentUser }) => {
   store.dispatch(getUsers(users))
   store.dispatch(getCurrentUser(currentUser))
