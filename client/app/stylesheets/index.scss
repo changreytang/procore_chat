@@ -20,7 +20,11 @@ body {
     width: 200px;
     #listLabel {
       display: flex;
+      align-items: center;
       height: 30px;
+      i {
+        margin: 0px 5px;
+      }
     }
     #list {
       display: block;
