@@ -9,12 +9,7 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   // Join the big general channel so that we can all get online statuses
   messagingClient.getChannelByUniqueName('general').then(channel => channel.join())
 
-  messagingClient.getChannels()
-    .then(channels => channels.forEach(channel => {
-      if (channel.status === 'joined') {
-        dispatch(updateUnread(channel.uniqueName))
-      }
-    }))
+  messagingClient.getChannels().then(channels => dispatch(setupUnread(channels)))
 
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
@@ -24,6 +19,7 @@ export const setupMessagingClient = token => (dispatch, getState) => {
         .find(user => user.id.toString() === message.author)
       const { id, name } = authorUser
       dispatch(activateChannel(id, name, false))
+      dispatch(updateUnread(id))
     }
   })
 
@@ -40,8 +36,31 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   })
 }
 
+export const setupUnread = channels => (dispatch, getState) => {
+
+  const findOtherId = uniqueName => {
+    let otherId
+    const ids = uniqueName.split(':')
+    ids.forEach(id => {if (id != getState().currentUser.id.toString()) otherId = id})
+    return otherId
+  }
+
+  channels.forEach(channel => {
+    const id = findOtherId(channel.uniqueName)
+    channel.getMessages()
+      .then(messages => {
+        const newestMessageIndex = messages.length ?
+          messages[messages.length - 1].index : 0
+        const lastReadIndex = channel.lastConsumedMessageIndex
+        const unread = newestMessageIndex - lastReadIndex
+        dispatch({ type: 'UPDATE_UNREAD', id, unread })
+      })
+  })
+}
+
 // Update the number of unread messages in a channel
-export const updateUnread = uniqueName => (dispatch, getState) => {
+export const updateUnread = id => (dispatch, getState) => {
+  const uniqueName = generateUniqueChannelName(getState().currentUser.id, id)
   getState().messagingClient
     .getChannelByUniqueName(uniqueName)
     .then(channel => {
@@ -52,7 +71,7 @@ export const updateUnread = uniqueName => (dispatch, getState) => {
           const lastReadIndex = channel.lastConsumedMessageIndex
           const unread = newestMessageIndex - lastReadIndex
           console.log('Checking channel', channel.friendlyName, 'unread:', unread)
-          dispatch({ type: 'UPDATE_UNREAD', uniqueName, unread })
+          dispatch({ type: 'UPDATE_UNREAD', id, unread })
         })
     })
 }
