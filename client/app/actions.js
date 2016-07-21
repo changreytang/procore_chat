@@ -86,6 +86,7 @@ export const closeChannel = uniqueName => ({
 
 // Send a new message
 export const sendMessage = (uniqueName, message) => (dispatch, getState) => {
+  console.log('sending', message)
 	getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
     .then(() => dispatch({ type: 'SEND_MESSAGE', message }))
