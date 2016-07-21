@@ -45,13 +45,20 @@ class Channel extends Component {
                   </div>
                 )}
               </div>
-              <textarea id="userInput"
-                className="messageInput" onKeyUp={() => auto_grow()}
-                onKeyPress={({ target, key }) => {
+              <textarea 
+                className="messageInput"
+                onKeyUp={({ target, key, shiftKey }) => {
                   if (key === 'Enter') {
-                    sendMessage(uniqueName, target.value)
-                    target.value = ''
+                    if(!shiftKey) {
+                      const newStr = target.value.trim()
+                      if(newStr.length != 0) {
+                        sendMessage(uniqueName, newStr)
+                      }
+                      target.value = ''
+                    }
                   }
+                  target.style.height = "5px";
+                  target.style.height = (target.scrollHeight)+"px";
                 }}
               />
             </div> : null
@@ -60,13 +67,6 @@ class Channel extends Component {
     )
   }
 }
-
-
-function auto_grow() {
-    document.getElementById("userInput").style.height = "5px";
-    document.getElementById("userInput").style.height = (document.getElementById("userInput").scrollHeight)+"px";
-}
-
 
 Channel.propTypes = {
   currentUser:  PropTypes.object.isRequired,
