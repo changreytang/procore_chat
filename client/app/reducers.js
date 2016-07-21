@@ -24,7 +24,7 @@ export default (state, action) => {
 		case 'CLOSE_CHANNEL':
 			channels = state.channels.filter(c => c.uniqueName != uniqueName)
 			return { ...state, channels }
-    case 'UPDATE_UNREAD':
+    case 'SETUP_UNREAD':
 			users = state.users.map(user => {
 				if (user.id.toString() === id) {
 					return { ...user, unread }

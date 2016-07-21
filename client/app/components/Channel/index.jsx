@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { sendMessage, closeChannel, toggleExpand, updateLastConsumedMessageIndex } from 'actions'
+import { sendMessage, closeChannel, toggleExpand, updateLastConsumedMessageIndex, updateUnread } from 'actions'
+import { findOtherId } from 'utils'
 
 class Channel extends Component {
   constructor(props) {
@@ -10,6 +11,8 @@ class Channel extends Component {
     if (this.props.expanded) {
       this.refs.messages.scrollTop = this.refs.messages.scrollHeight
       this.props.updateLastConsumedMessageIndex(this.props.uniqueName)
+      // const id = findOtherId(this.props.uniqueName)
+      // this.props.updateUnread(id)
     }
   }
   render() {
@@ -71,5 +74,5 @@ const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
 
 export default connect(
   mapStateToProps,
-  { closeChannel, toggleExpand, sendMessage, updateLastConsumedMessageIndex }
+  { closeChannel, toggleExpand, sendMessage, updateLastConsumedMessageIndex, updateUnread }
 )(Channel)

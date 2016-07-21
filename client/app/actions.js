@@ -1,4 +1,4 @@
-import { generateUniqueChannelName } from './utils'
+import { generateUniqueChannelName, findOtherId } from './utils'
 
 // The initial setup of the messaging client, along with some event listeners
 export const setupMessagingClient = token => (dispatch, getState) => {
@@ -9,18 +9,19 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   // Join the big general channel so that we can all get online statuses
   messagingClient.getChannelByUniqueName('general').then(channel => channel.join())
 
-  messagingClient.getChannels().then(channels => dispatch(setupUnread(channels)))
+  messagingClient.getChannels().then(channels => {dispatch(setupUnread(channels))})
 
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
     const ownMessage = message.author === getState().currentUser.id.toString()
+    const authorUser = getState().users
+      .find(user => user.id.toString() === message.author)
+    const { id, name } = authorUser
     if (!ownMessage) {
-      const authorUser = getState().users
-        .find(user => user.id.toString() === message.author)
-      const { id, name } = authorUser
       dispatch(activateChannel(id, name, false))
       dispatch(updateUnread(id))
     }
+
   })
 
   // Update the online indicators of the other users on changes
@@ -37,24 +38,19 @@ export const setupMessagingClient = token => (dispatch, getState) => {
 }
 
 export const setupUnread = channels => (dispatch, getState) => {
-
-  const findOtherId = uniqueName => {
-    let otherId
-    const ids = uniqueName.split(':')
-    ids.forEach(id => {if (id != getState().currentUser.id.toString()) otherId = id})
-    return otherId
-  }
-
+  
   channels.forEach(channel => {
-    const id = findOtherId(channel.uniqueName)
-    channel.getMessages()
-      .then(messages => {
-        const newestMessageIndex = messages.length ?
-          messages[messages.length - 1].index : 0
-        const lastReadIndex = channel.lastConsumedMessageIndex
-        const unread = newestMessageIndex - lastReadIndex
-        dispatch({ type: 'UPDATE_UNREAD', id, unread })
-      })
+    if (channel.status === 'joined') {
+      const id = findOtherId(channel.uniqueName)
+      channel.getMessages()
+        .then(messages => {
+          const newestMessageIndex = messages.length ?
+            messages[messages.length - 1].index : 0
+          const lastReadIndex = channel.lastConsumedMessageIndex
+          const unread = newestMessageIndex - lastReadIndex
+          dispatch({ type: 'SETUP_UNREAD', id, unread })
+        })
+    }
   })
 }
 
@@ -70,14 +66,14 @@ export const updateUnread = id => (dispatch, getState) => {
             messages[messages.length - 1].index : 0
           const lastReadIndex = channel.lastConsumedMessageIndex
           const unread = newestMessageIndex - lastReadIndex
-          console.log('Checking channel', channel.friendlyName, 'unread:', unread)
-          dispatch({ type: 'UPDATE_UNREAD', id, unread })
+          dispatch({ type: 'UPDATE_UNREAD', id: id.toString(), unread })
         })
     })
 }
 
 // tell Twilio that we've seen all the messages in this convo
 export const updateLastConsumedMessageIndex = uniqueName => (dispatch, getState) => {
+  const id = findOtherId(uniqueName)
   getState().messagingClient
     .getChannelByUniqueName(uniqueName)
     .then(channel => {
@@ -95,6 +91,7 @@ export const activateChannel = ( id, name, userActivated ) => (dispatch, getStat
 
   // This function joins a given channel and sets up event listeners
   const setupChannel = channel => {
+    getState().users.find(user => user.id === user)
     channel.join() // TODO this is called every time a channel is opened, which is redundant
     channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
@@ -148,7 +145,6 @@ export const closeChannel = uniqueName => ({
 
 // Send a new message
 export const sendMessage = (uniqueName, message) => (dispatch, getState) => {
-  console.log('sending', message)
 	getState().messagingClient.getChannelByUniqueName(uniqueName)
 		.then(channel => channel.sendMessage(message))
     .then(() => dispatch({ type: 'SEND_MESSAGE', message }))
