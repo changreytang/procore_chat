@@ -4,59 +4,34 @@ import { activateChannel, searchUsers } from 'actions'
 
 class UserList extends Component {
   constructor(props) {
-    super(props) 
+    super(props)
     this.state = { expanded: false }
-    this.toggleExpand = this.toggleExpand.bind(this)
-    this.handleSearch = this.handleSearch.bind(this)
-  }
-  toggleExpand() {
-    const expanded = !this.state.expanded
-    this.setState({ expanded })
-  }
-  handleSearch(e) {
-    this.props.searchUsers(e.target.value)
-  }
-  handleActivate(id, name) {
-    return function () {
-      this.props.activateChannel(id, name)
-    }
   }
   render() {
-    const { users, activateChannel, numOnline, searchUsers } = this.props 
-    const { expanded } = this.state 
+    const { activateChannel, searchUsers, users, numOnline } = this.props
+    const expanded = !this.state.expanded
+    const onlineUsers = users.filter(user => user.online)
+    const offlineUsers = users.filter(user => !user.online)
+    const sortedUsers = [...onlineUsers, ...offlineUsers]
     return (
       <div id="channelList">
-        {expanded ?
+        {this.state.expanded ?
           <div>
             <div id="list">
-              {users.filter(user => user.online).map(({ id, name}) =>
-                <div
-                  key={id}
-                  onClick={() => activateChannel(id, name)}
-                  className="user"
-                >
+              {sortedUsers.map(({ id, name, online }) =>
+                <div key={id} onClick={() => activateChannel(id, name)}>
                   <div>{name}</div>
-                  <div className="on" />
-                </div>
-              )}
-              {users.filter(user => !user.online).map(({ id, name}) =>
-                <div
-                  key={id}
-                  onClick={() => activateChannel(id, name)}
-                  className="user"
-                >
-                  <div>{name}</div>
-                  <div className="off"/>
+                  <div className={online ? 'on' : 'off'} />
                 </div>
               )}
             </div>
             <div id="userSearchArea">
               <i className="fa fa-search"></i>
-              <input onChange={this.handleSearch} />
+              <input onChange={e => searchUsers(e.target.value)} />
             </div>
           </div> : null
-        } 
-        <div id="listLabel" onClick={ this.toggleExpand }>
+        }
+        <div id="listLabel" onClick={() => this.setState({ expanded })}>
           <i className="fa fa-comments"></i>
           <b>Chat ({numOnline} Online)</b>
         </div>
@@ -73,7 +48,7 @@ UserList.propTypes = {
 
 const mapStateToProps = (state) => {
   const reg = new RegExp(state.userListSearchQuery, 'i')
-  const users = state.users.filter(user => reg.test(user.name))
+  const users = state.users.filter(({ name }) => reg.test(name))
   const numOnline = state.users.filter(user => user.online).length
   return { users, numOnline }
 }

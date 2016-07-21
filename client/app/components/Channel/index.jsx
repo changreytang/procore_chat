@@ -6,62 +6,50 @@ class Channel extends Component {
   constructor(props) {
     super(props)
     this.state = { expanded: true }
-    this.toggleExpand = this.toggleExpand.bind(this)
-    this.handleClose = this.handleClose.bind(this)
   }
   componentDidUpdate() {
     if (this.state.expanded) {
       this.refs.messages.scrollTop = this.refs.messages.scrollHeight
     }
   }
-  handleClose() {
-    const { closeChannel, uniqueName } = this.props
-    closeChannel(uniqueName)
-  }
-  toggleExpand() {
-    const expanded = !this.state.expanded
-    this.setState({ expanded })
-  }
   render() {
-    const { currentUser, sendMessage, closeChannel, uniqueName, name,
-            messages } = this.props
-    const { expanded } = this.state
+    const { currentUser, sendMessage, closeChannel, uniqueName, name, messages } = this.props
     const className = author => currentUser.id.toString() === author ? 'me' : 'other'
+    const expanded = !this.state.expanded
     return (
       <div className="channel">
         <div className="top">
-          <div className="name" onClick={this.toggleExpand}>{name}</div>
-          <i className="fa fa-times" onClick={this.handleClose}></i>
+          <div className="name" onClick={() => this.setState({ expanded })}>
+            {name}
+          </div>
+          <i className="fa fa-times" onClick={() => closeChannel(uniqueName)} />
         </div>
-        {
-          expanded ?
-            <div>
-              <div ref="messages" className="messages">
-                {messages.map(({ index, body, author }) =>
-                  <div key={index}>
-                    <div className={`message ${className(author)}`}>
-                      <span>{body}</span>
-                    </div>
+        {this.state.expanded ?
+          <div>
+            <div ref="messages" className="messages">
+              {messages.map(({ index, body, author }) =>
+                <div key={index}>
+                  <div className={`message ${className(author)}`}>
+                    <span>{body}</span>
                   </div>
-                )}
-              </div>
-              <textarea 
-                className="messageInput"
-                onKeyUp={({ target, key, shiftKey }) => {
-                  if (key === 'Enter') {
-                    if(!shiftKey) {
-                      const newStr = target.value.trim()
-                      if(newStr.length != 0) {
-                        sendMessage(uniqueName, newStr)
-                      }
-                      target.value = ''
-                    }
+                </div>
+              )}
+            </div>
+            <textarea id="userInput"
+              className="messageInput"
+              onKeyUp={({ target, key, shiftKey }) => {
+                if (key === 'Enter' && !shiftKey) {
+                  const newStr = target.value.trim()
+                  if(newStr.length != 0) {
+                    sendMessage(uniqueName, newStr)
                   }
-                  target.style.height = "5px";
-                  target.style.height = (target.scrollHeight)+"px";
-                }}
-              />
-            </div> : null
+                  target.value = ''
+                }
+                target.style.height = '5px'
+                target.style.height = `${target.scrollHeight}px`
+              }}
+            />
+          </div> : null
         }
       </div>
     )
