@@ -21,7 +21,7 @@ class UserList extends Component {
             <div id="list">
               {sortedUsers.map(({ id, name, online, unread }) =>
                 <div key={id} onClick={() => activateChannel(id, name, true)}>
-                  <div>{name} ({unread})</div>
+                  <div>{name}</div>
                   <div className={online ? 'on' : 'off'} />
                 </div>
               )}
