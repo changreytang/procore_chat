@@ -38,7 +38,10 @@ class Channel extends Component {
               className="messageInput"
               onKeyUp={({ target, key, shiftKey }) => {
                 if (key === 'Enter' && !shiftKey) {
-                  sendMessage(uniqueName, target.value)
+                  const newStr = target.value.trim()
+                  if(newStr.length != 0) {
+                    sendMessage(uniqueName, newStr)
+                  }
                   target.value = ''
                 }
                 target.style.height = '5px'
