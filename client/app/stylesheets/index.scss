@@ -55,7 +55,7 @@ body {
       .off {
         background: $red1;
       }
-      .user {
+      > div { // A user in the list
         cursor: pointer;
         padding: 10px;
         display: flex;
