@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import { activateChannel, searchUsers } from 'actions'
+import { generateUniqueChannelName } from 'utils'
 
 class UserList extends Component {
   constructor(props) {
@@ -18,9 +19,9 @@ class UserList extends Component {
         {this.state.expanded ?
           <div>
             <div id="list">
-              {sortedUsers.map(({ id, name, online }) =>
-                <div key={id} onClick={() => activateChannel(id, name)}>
-                  <div>{name}</div>
+              {sortedUsers.map(({ id, name, online, unread }) =>
+                <div key={id} onClick={() => activateChannel(id, name, true)}>
+                  <div>{name} ({unread})</div>
                   <div className={online ? 'on' : 'off'} />
                 </div>
               )}
@@ -48,7 +49,15 @@ UserList.propTypes = {
 
 const mapStateToProps = (state) => {
   const reg = new RegExp(state.userListSearchQuery, 'i')
-  const users = state.users.filter(({ name }) => reg.test(name))
+  const users = state.users
+    .filter(({ name }) => reg.test(name))
+    .map(user => {
+      const uniqueName = generateUniqueChannelName(user.id, state.currentUser.id)
+      const channel = state.channels.find(channel => channel.uniqueName === uniqueName)
+      let unread = 0
+      if (channel) unread = channel.unread
+      return { ...user, unread }
+    })
   const numOnline = state.users.filter(user => user.online).length
   return { users, numOnline }
 }
