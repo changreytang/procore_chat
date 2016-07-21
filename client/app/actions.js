@@ -6,10 +6,15 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   const messagingClient = new Twilio.IPMessaging.Client(accessManager)
   dispatch({ type: 'SET_MESSAGING_CLIENT', messagingClient })
 
-  // const general = { uniqueName: "general", friendlyName: "General Chat Channel"}
-  // messagingClient.createChannel(general).then(channel => channel.join())  
-
+  // Join the big general channel so that we can all get online statuses
   messagingClient.getChannelByUniqueName('general').then(channel => channel.join())
+
+  messagingClient.getChannels()
+    .then(channels => channels.forEach(channel => {
+      if (channel.status === 'joined') {
+        dispatch(updateUnread(channel.uniqueName))
+      }
+    }))
 
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
@@ -18,7 +23,7 @@ export const setupMessagingClient = token => (dispatch, getState) => {
       const authorUser = getState().users
         .find(user => user.id.toString() === message.author)
       const { id, name } = authorUser
-      dispatch(activateChannel(id, name))
+      dispatch(activateChannel(id, name, false))
     }
   })
 
@@ -35,43 +40,81 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   })
 }
 
+// Update the number of unread messages in a channel
+export const updateUnread = uniqueName => (dispatch, getState) => {
+  getState().messagingClient
+    .getChannelByUniqueName(uniqueName)
+    .then(channel => {
+      channel.getMessages()
+        .then(messages => {
+          const newestMessageIndex = messages.length ?
+            messages[messages.length - 1].index : 0
+          const lastReadIndex = channel.lastConsumedMessageIndex
+          const unread = newestMessageIndex - lastReadIndex
+          console.log('Checking channel', channel.friendlyName, 'unread:', unread)
+          dispatch({ type: 'UPDATE_UNREAD', uniqueName, unread })
+        })
+    })
+}
+
+// tell Twilio that we've seen all the messages in this convo
+export const updateLastConsumedMessageIndex = uniqueName => (dispatch, getState) => {
+  getState().messagingClient
+    .getChannelByUniqueName(uniqueName)
+    .then(channel => {
+      const newestMessage = channel.messages.length ?
+        channel.messages[channel.messages.length - 1].index : 0
+      channel.updateLastConsumedMessageIndex(newestMessage)
+      dispatch({ type: 'UPDATE_CONSUMED', newestMessage })
+    })
+}
+
 // open up a new chat box
-export const activateChannel = ( id, name ) => (dispatch, getState) => {
+export const activateChannel = ( id, name, userActivated ) => (dispatch, getState) => {
   // construct the unique name for the channel
   const uniqueName = generateUniqueChannelName(getState().currentUser.id, id)
 
   // This function joins a given channel and sets up event listeners
   const setupChannel = channel => {
     channel.join() // TODO this is called every time a channel is opened, which is redundant
-		channel.getMessages().then(messages => dispatch({
+    channel.getMessages().then(messages => dispatch({
       type: 'GET_MESSAGES',
       uniqueName,
       messages,
     }))
-		channel.on('messageAdded', message => dispatch({
+    channel.on('messageAdded', message => dispatch({
       type: 'MESSAGE_ADDED',
       uniqueName,
       message,
     }))
-		dispatch({ type: 'ACTIVATE_CHANNEL', channel, name })
-	}
+    dispatch({ type: 'ACTIVATE_CHANNEL', channel, name, userActivated })
+  }
 
   // If a channel exists, join it. Otherwise create it
-	getState().messagingClient.getChannelByUniqueName(uniqueName)
-		.then(channel => {
-			if(!channel) {
-        const newChannel = { uniqueName, friendlyName: `${uniqueName} (f)` }
-        getState().messagingClient.createChannel(newChannel).then(channel => {
-          channel.add(id.toString())
-          setupChannel(channel)
-        })
-			} else {
+  getState().messagingClient.getChannelByUniqueName(uniqueName)
+    .then(channel => {
+      if(!channel) {
+        const friendlyName = `${uniqueName} (f)`
+        const isPrivate = true
+        const newChannel = { uniqueName, friendlyName, isPrivate }
+        getState().messagingClient
+          .createChannel(newChannel)
+          .then(channel => {
+            channel.add(id.toString())
+            setupChannel(channel)
+          })
+      } else {
         const uniqueNames = getState().channels.map(c => c.uniqueName)
         const isChannelActive = uniqueNames.includes(uniqueName)
-				if (!isChannelActive) setupChannel(channel)
-			}
-		})
+        if (!isChannelActive) setupChannel(channel)
+      }
+    })
 }
+
+export const toggleExpand = uniqueName => ({
+  type: 'TOGGLE_EXPAND',
+  uniqueName,
+})
 
 export const searchUsers = input => ({
   type: 'SEARCH_USERS',

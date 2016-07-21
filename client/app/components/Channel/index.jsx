@@ -1,30 +1,29 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { sendMessage, closeChannel, toggleExpand } from 'actions'
+import { sendMessage, closeChannel, toggleExpand, updateLastConsumedMessageIndex } from 'actions'
 
 class Channel extends Component {
   constructor(props) {
     super(props)
-    this.state = { expanded: true }
   }
   componentDidUpdate() {
-    if (this.state.expanded) {
+    if (this.props.expanded) {
       this.refs.messages.scrollTop = this.refs.messages.scrollHeight
+      this.props.updateLastConsumedMessageIndex(this.props.uniqueName)
     }
   }
   render() {
-    const { currentUser, sendMessage, closeChannel, uniqueName, name, messages } = this.props
+    const { currentUser, toggleExpand, expanded, sendMessage, closeChannel, uniqueName, name, messages } = this.props
     const className = author => currentUser.id.toString() === author ? 'me' : 'other'
-    const expanded = !this.state.expanded
     return (
       <div className="channel">
         <div className="top">
-          <div className="name" onClick={() => this.setState({ expanded })}>
+          <div className="name" onClick={() => toggleExpand(uniqueName)}>
             {name}
           </div>
           <i className="fa fa-times" onClick={() => closeChannel(uniqueName)} />
         </div>
-        {this.state.expanded ?
+        {expanded ?
           <div>
             <div ref="messages" className="messages">
               {messages.map(({ index, body, author }) =>
@@ -69,5 +68,5 @@ const mapStateToProps = ({ channels, currentUser }, { uniqueName }) => {
 
 export default connect(
   mapStateToProps,
-  { closeChannel, toggleExpand, sendMessage }
+  { closeChannel, toggleExpand, sendMessage, updateLastConsumedMessageIndex }
 )(Channel)

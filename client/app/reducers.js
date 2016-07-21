@@ -3,7 +3,7 @@ import { generateUniqueChannelName } from './utils'
 export default (state, action) => {
 	let channels, users
 	const { input, type, currentUser, uniqueName, name, channel, online,
-		      message, messages, messagingClient, identity } = action
+		      message, messages, messagingClient, identity, userActivated, unread } = action
 
 	switch (type) {
 		case 'SET_MESSAGING_CLIENT':
@@ -14,26 +14,46 @@ export default (state, action) => {
       users = action.users
 			return { ...state, users }
 		case 'ACTIVATE_CHANNEL':
+      const newChannel = {...channel, name, expanded: userActivated }
 			if((window.innerWidth - 450) > document.getElementById('channels').offsetWidth)
-				channels = state.channels.concat({...channel, name})
+				channels = state.channels.concat(newChannel)
 			else {
-				channels = state.channels.slice(0, state.channels.length - 1).concat({...channel, name})
+				channels = state.channels.slice(0, state.channels.length - 1).concat(newChannel)
 			}
 			return { ...state, channels }
 		case 'CLOSE_CHANNEL':
 			channels = state.channels.filter(c => c.uniqueName != uniqueName)
 			return { ...state, channels }
+    case 'UPDATE_UNREAD':
+			channels = state.channels.map(channel => {
+				if (channel.uniqueName === uniqueName) {
+					return { ...channel, unread }
+				} else {
+					return channel
+				}
+			})
+			return { ...state, channels }
+    case 'TOGGLE_EXPAND':
+			channels = state.channels.map(channel => {
+				if (channel.uniqueName === uniqueName) {
+          const expanded = !channel.expanded
+					return { ...channel, expanded }
+				} else {
+					return channel
+				}
+			})
+			return { ...state, channels }
 		case 'SEARCH_USERS':
 			return {...state, userListSearchQuery: input}
-	    case 'UPDATE_STATUS':
-	      users = state.users.map(user => {
-	        if (user.id.toString() === identity) {
-	          return { ...user, online }
-	        } else {
-	          return user
-	        }
-	      })
-	      return { ...state, users }
+    case 'UPDATE_STATUS':
+      users = state.users.map(user => {
+        if (user.id.toString() === identity) {
+          return { ...user, online }
+        } else {
+          return user
+        }
+      })
+      return { ...state, users }
 		case 'GET_MESSAGES':
 			channels = state.channels.map(channel => {
 				if (channel.uniqueName === uniqueName) {
