@@ -16,43 +16,43 @@ class Channel extends Component {
     const { currentUser, toggleExpand, expanded, sendMessage, closeChannel, uniqueName, name, messages } = this.props
     const className = author => currentUser.id.toString() === author ? 'me' : 'other'
     return (
-      <div className="channel">
-        <div className="top">
-          <div className="name" onClick={() => toggleExpand(uniqueName)}>
-            {name}
-          </div>
-          <i className="fa fa-times" onClick={() => closeChannel(uniqueName)} />
-        </div>
-        {expanded ?
-          <div>
-            <div ref="messages" className="messages">
-              {messages.map(({ index, body, author }) =>
-                <div key={index}>
-                  <div className={`message ${className(author)}`}>
-                    <span>{body}</span>
-                  </div>
-                </div>
-              )}
+        <div className="channel animated fadeInRight">
+          <div className="top">
+            <div className="name" onClick={() => toggleExpand(uniqueName)}>
+              {name}
             </div>
-            <textarea id="userInput"
-              className="messageInput"
-              onKeyUp={({ target, key, shiftKey }) => {
-                if (key === "Enter") {
-                  if (!shiftKey) {
-                    const newStr = target.value.trim()
-                    if(!!newStr.length) {
-                      sendMessage(uniqueName, newStr)
+            <i className="fa fa-times" onClick={() => closeChannel(uniqueName)} />
+          </div>
+          {expanded ?
+            <div>
+              <div ref="messages" className="messages">
+                {messages.map(({ index, body, author }) =>
+                  <div key={index}>
+                    <div className={`message ${className(author)}`}>
+                      <span>{body}</span>
+                    </div>
+                  </div>
+                )}
+              </div>
+              <textarea id="userInput"
+                className="messageInput"
+                onKeyUp={({ target, key, shiftKey }) => {
+                  if (key === "Enter") {
+                    if (!shiftKey) {
+                      const newStr = target.value.trim()
+                      if(!!newStr.length) {
+                        sendMessage(uniqueName, newStr)
+                      }
+                      target.value = ''
                     }
-                    target.value = ''
                   }
-                }
-                target.style.height = '5px'
-                target.style.height = `${target.scrollHeight}px`
-              }}
-            />
-          </div> : null
-        }
-      </div>
+                  target.style.height = '5px'
+                  target.style.height = `${target.scrollHeight}px`
+                }}
+              />
+            </div> : null
+          }
+        </div>
     )
   }
 }
