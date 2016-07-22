@@ -3,7 +3,7 @@ import { generateUniqueChannelName } from './utils'
 export default (state, action) => {
   let channels, users
   const { input, type, currentUser, uniqueName, name, channel, online,
-          message, messages, messagingClient, identity, userActivated, unread } = action
+          message, messages, messagingClient, identity, userActivated, unread, id } = action
 
   switch (type) {
     case 'SET_MESSAGING_CLIENT':
@@ -11,7 +11,9 @@ export default (state, action) => {
     case 'GET_CURRENT_USER':
       return { ...state, currentUser }
     case 'GET_USERS':
-      users = action.users
+      users = action.users.map(user => {
+        return { ...user, unread: false }
+      })
       return { ...state, users }
     case 'ACTIVATE_CHANNEL':
       const newChannel = {...channel, name, expanded: userActivated }
@@ -25,14 +27,14 @@ export default (state, action) => {
       channels = state.channels.filter(c => c.uniqueName != uniqueName)
       return { ...state, channels }
     case 'UPDATE_UNREAD':
-      channels = state.channels.map(channel => {
-        if (channel.uniqueName === uniqueName) {
-          return { ...channel, unread }
+      users = state.users.map(user => {
+        if (user.id.toString() === id) {
+          return { ...user, unread }
         } else {
-          return channel
+          return user
         }
       })
-      return { ...state, channels }
+      return { ...state, users }
     case 'TOGGLE_EXPAND':
       channels = state.channels.map(channel => {
         if (channel.uniqueName === uniqueName) {

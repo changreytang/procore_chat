@@ -1,4 +1,4 @@
-import { generateUniqueChannelName } from './utils'
+import { generateUniqueChannelName, findOtherId } from './utils'
 
 // The initial setup of the messaging client, along with some event listeners
 export const setupMessagingClient = token => (dispatch, getState) => {
@@ -8,14 +8,14 @@ export const setupMessagingClient = token => (dispatch, getState) => {
 
   // Join the big general channel so that we can all get online statuses
   messagingClient.getChannelByUniqueName('general').then(channel => channel.join())
+  messagingClient.getChannels().then(channels => {dispatch(setupUnread(channels))})
 
-  messagingClient.getChannels()
-    .then(channels => channels.forEach(channel => {
-      if (channel.status === 'joined') {
-        dispatch(updateUnread(channel.uniqueName))
-      }
-    }))
-
+  // messagingClient.getChannels()
+  //   .then(channels => channels.forEach(channel => {
+  //     if (channel.status === 'joined') {
+  //       dispatch(updateUnread(channel.uniqueName))
+  //     }
+  //   }))
   // Open a new chat box when someone messages you
   messagingClient.on('messageAdded', message => {
     const ownMessage = message.author === getState().currentUser.id.toString()
@@ -40,31 +40,39 @@ export const setupMessagingClient = token => (dispatch, getState) => {
   })
 }
 
-// Update the number of unread messages in a channel
-export const updateUnread = uniqueName => (dispatch, getState) => {
-  getState().messagingClient
-    .getChannelByUniqueName(uniqueName)
-    .then(channel => {
+export const setupUnread = channels => (dispatch, getState) => {
+  channels.forEach(channel => {
+    if (channel.status === 'joined') {
+      const id = findOtherId(channel.uniqueName)
       channel.getMessages()
         .then(messages => {
+          let unread = false
           const newestMessageIndex = messages.length ?
             messages[messages.length - 1].index : 0
           const lastReadIndex = channel.lastConsumedMessageIndex
-          const unread = newestMessageIndex - lastReadIndex
-          console.log('Checking channel', channel.friendlyName, 'unread:', unread)
-          dispatch({ type: 'UPDATE_UNREAD', uniqueName, unread })
+          if ((newestMessageIndex - lastReadIndex) != 0) { unread = true }
+          dispatch({ type: 'UPDATE_UNREAD', id, unread })
         })
-    })
+    }
+  })
+}
+
+// Update the number of unread messages in a channel
+export const updateUnread = (uniqueName, unread) => (dispatch, getState) => {
+  const id = findOtherId(uniqueName)
+  dispatch({ type: 'UPDATE_UNREAD', id, unread })
 }
 
 // tell Twilio that we've seen all the messages in this convo
 export const updateLastConsumedMessageIndex = uniqueName => (dispatch, getState) => {
+  const id = findOtherId(uniqueName)
   getState().messagingClient
     .getChannelByUniqueName(uniqueName)
     .then(channel => {
       const newestMessage = channel.messages.length ?
         channel.messages[channel.messages.length - 1].index : 0
       channel.updateLastConsumedMessageIndex(newestMessage)
+      console.log("UPDATED", newestMessage, channel.lastConsumedMessageIndex)
       dispatch({ type: 'UPDATE_CONSUMED', newestMessage })
     })
 }

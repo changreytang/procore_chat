@@ -22,7 +22,10 @@ class UserList extends Component {
               {sortedUsers.map(({ id, name, online, unread }) =>
                 <div key={id} onClick={() => activateChannel(id, name, true)}>
                   <div>{name}</div>
-                  <div className={online ? 'on' : 'off'} />
+                  <div className="notif">
+                    {unread ? <i className="fa fa-bell" /> : null}
+                    <div className={online ? 'on' : 'off'} />
+                  </div>
                 </div>
               )}
             </div>
@@ -49,15 +52,7 @@ UserList.propTypes = {
 
 const mapStateToProps = (state) => {
   const reg = new RegExp(state.userListSearchQuery, 'i')
-  const users = state.users
-    .filter(({ name }) => reg.test(name))
-    .map(user => {
-      const uniqueName = generateUniqueChannelName(user.id, state.currentUser.id)
-      const channel = state.channels.find(channel => channel.uniqueName === uniqueName)
-      let unread = 0
-      if (channel) unread = channel.unread
-      return { ...user, unread }
-    })
+  const users = state.users.filter(({ name }) => reg.test(name))
   const numOnline = state.users.filter(user => user.online).length
   return { users, numOnline }
 }
