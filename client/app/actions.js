@@ -123,15 +123,15 @@ export const searchUsers = input => ({
 
 // close an open chat box
 export const closeChannel = uniqueName => ({
-	type: 'CLOSE_CHANNEL',
-	uniqueName,
+  type: 'CLOSE_CHANNEL',
+  uniqueName,
 })
 
 // Send a new message
 export const sendMessage = (uniqueName, message) => (dispatch, getState) => {
   console.log('sending', message)
-	getState().messagingClient.getChannelByUniqueName(uniqueName)
-		.then(channel => channel.sendMessage(message))
+  getState().messagingClient.getChannelByUniqueName(uniqueName)
+    .then(channel => channel.sendMessage(message))
     .then(() => dispatch({ type: 'SEND_MESSAGE', message }))
 }
 
@@ -143,6 +143,6 @@ export const getUsers = users => ({
 
 // Set the current user
 export const getCurrentUser = currentUser => ({
-	type: 'GET_CURRENT_USER',
-	currentUser,
+  type: 'GET_CURRENT_USER',
+  currentUser,
 })
