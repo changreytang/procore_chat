@@ -18,6 +18,7 @@
   <body>
     <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
+        <%= image_tag ("procore-logo1.png"), :size => '50x50', :class => "procore-logo" %>
         <span class="mdl-layout-title">
           <%if logged_in? %>
             <%= "Welcome, #{current_user.name}!" %>
