@@ -14,14 +14,14 @@ class ChatsController < ApplicationController
 
         # Create IP Messaging grant for our token
         grant = Twilio::Util::AccessToken::IpMessagingGrant.new
-        grant.service_sid = heroku_sid 
+        grant.service_sid = local_sid
         grant.endpoint_id = "procore_chat:#{identity}:browser"
         token.add_grant grant
 
         @token = token.to_jwt
         @users = User.all
 
-        cmd = "curl -X POST https://ip-messaging.twilio.com/v1/Services/#{heroku_sid} \
+        cmd = "curl -X POST https://ip-messaging.twilio.com/v1/Services/#{local_sid} \
                -d 'ReachabilityEnabled=true' \
                -u 'AC6e8a6ac0cde02b70cf13757258df57fc:4cd11afae4208bf3beead39b6c23a389'"
 
