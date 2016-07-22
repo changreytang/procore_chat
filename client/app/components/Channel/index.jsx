@@ -49,14 +49,12 @@ class Channel extends Component {
               <textarea id="userInput"
                 className="messageInput"
                 onKeyUp={({ target, key, shiftKey }) => {
-                  if (key === "Enter") {
-                    if (!shiftKey) {
-                      const newStr = target.value.trim()
-                      if(!!newStr.length) {
-                        sendMessage(uniqueName, newStr)
-                      }
-                      target.value = ''
+                  if (key === "Enter" && !shiftKey) {
+                    const newStr = target.value.trim()
+                    if(!!newStr.length) {
+                      sendMessage(uniqueName, newStr)
                     }
+                    target.value = ''
                   }
                   target.style.height = '5px'
                   target.style.height = `${target.scrollHeight}px`

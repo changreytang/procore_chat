@@ -9,6 +9,7 @@
       <%= f.email_field :email, class: 'form-control' %>
       <br>
       <%= f.submit "Create User", class: "btn btn-primary center-block" %>
+      <%= link_to "Already signed up? Log in!", sessions_new_path, class: 'btn btn-link center-block' %>
     <% end %>
   </div>
 </div>
