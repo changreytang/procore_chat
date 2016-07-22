@@ -44,6 +44,7 @@ class Channel extends Component {
                         sendMessage(uniqueName, newStr)
                       }
                       target.value = ''
+                      return false
                     }
                   }
                   target.style.height = '5px'
